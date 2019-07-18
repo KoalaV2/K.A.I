@@ -1,10 +1,10 @@
 # Project Seb in Python
 
-__**Current primary version is written in c++ at https://github.com/KoalaV2/project-seb**__
+**Current primary version is written in C++ at https://github.com/KoalaV2/project-seb**
 
 This is a project of mine to further improve my daily life automation and programming skills.
 
-**Warning, only works in Linux, not Windows**
+:warning: **Warning, only works in Linux, not Windows** :warning: 
 
 ## What this is
 
