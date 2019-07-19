@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import library.calculator as calculator
+import library.time as time
 
 print("""Hello user! \n What\'s your name?""")
 
@@ -13,6 +14,8 @@ if name.lower() == "theo":
 
     if command == "open calculator" or command == "calculator" or command == "calc":
         calculator.calculator()
+    elif command == "show current time" or command == "time" or command == "current time":
+        time.time()
 elif name != "theo":
     print("Acess denied")
 else:
