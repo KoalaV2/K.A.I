@@ -1,5 +1,9 @@
-name = input("Hello user! What's your name? \n :")
+print("""Hello user!
+What\'s your name?""")
+
+name = input("-> ")
+
 if name.lower() == "theo":
     print("Welcome Theo")
 else:
-    print("Acess denied!")
+    print("Access denied!")
