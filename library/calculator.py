@@ -2,8 +2,8 @@ import math
 
 def calculator():
     first_number = float(input("Please enter the first number: "))
+    operation = input("What operation should be used? :")
     second_number = float(input("Please enter the second number: "))
-    operation = input("What operation should be used? ")
 
     if operation == "+" or operation == "add":
         result = first_number + second_number
