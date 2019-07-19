@@ -20,9 +20,9 @@ Project Seb is a custom made assitant which is fully programmed and built by mys
 6. Text to speech
 7. SSH-info script
 8. Date/time info
-9. Calculator
-10. Website scraper
+9. Website scraper
 10. Wikipedia article to PDF converter
+~~11. calculato~~
 
 ## Features in the far distance
 
