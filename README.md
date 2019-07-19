@@ -19,9 +19,8 @@ Project Seb is a custom made assitant which is fully programmed and built by mys
 5. Chat application
 6. Text to speech
 7. SSH-info script
-8. Date/time info
-9. Website scraper
-10. Wikipedia article to PDF converter
+8. Website scraper
+9. Wikipedia article to PDF converter
 
 ## Features in the far distance
 
@@ -30,5 +29,6 @@ Project Seb is a custom made assitant which is fully programmed and built by mys
 ## Finished features
 
 1. Calculator
+2. Local time
 
 ## How-To
