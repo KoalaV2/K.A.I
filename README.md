@@ -31,4 +31,6 @@ Project Seb is a custom made assitant which is fully programmed and built by mys
 3. SSH info script
 4. TTS (Text to speech)
 
-## How-To
+## Dependencies 
+
+1. espeak-ng
