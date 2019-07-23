@@ -1,7 +1,7 @@
 import subprocess
 from datetime import datetime
 def time():
-    now = datetime.now()
+    now = datetime.utcnow()
     
     current_time = now.strftime("%H:%M")
 

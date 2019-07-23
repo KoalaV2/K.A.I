@@ -11,8 +11,8 @@ name = input("-> ")
 subprocess.call(["espeak", "Welcome" + name])
 print("\n Welcome", name + "\n")
 
-subprocess.call(["espeak", name + ",what do you want to do today"])
-command = input(name + ",what do you want to do today? \n -> ")
+subprocess.call(["espeak", "what do you want to do today"])
+command = input("What do you want to do today? \n -> ")
 
 if command == "open calculator" or command == "calculator" or command == "calc":
     calculator.calculator()
