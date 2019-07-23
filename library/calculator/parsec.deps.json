@@ -1,12 +1,12 @@
 {
   "runtimeTarget": {
-    "name": ".NETCoreApp,Version=v2.2/ubuntu.18.04-x64",
+    "name": ".NETCoreApp,Version=v2.2/linux-x64",
     "signature": "82cb4d8f244d36788c05f2a85f65cb058c1bbeba"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.2": {},
-    ".NETCoreApp,Version=v2.2/ubuntu.18.04-x64": {
+    ".NETCoreApp,Version=v2.2/linux-x64": {
       "parsec/1.0.0": {
         "dependencies": {
           "FParsec": "1.0.3",
