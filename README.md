@@ -12,13 +12,16 @@ Project Seb is a custom made assistant which is fully programmed and built by my
 
 ## Planned features
 
-1. Weather info
-2. Google search
-3. Light control 
-4. Voice controlling (Speech to text)
-5. Chat application
-6. Website scraper
-7. Wikipedia article to PDF converter
+1. TUI / GUI
+2. Better security / permission control
+3. Face recognition 
+4. Weather info
+5. Google search
+6. Light control 
+7. Voice controlling (Speech to text)
+8. Chat application
+9. Website scraper
+10. Wikipedia article to PDF converter
 
 ## Features in the far distance
 
