@@ -20,15 +20,29 @@ with sr.Microphone() as source:
         subprocess.call(["espeak", "what do you want to do today"])
         command_listen = r.listen(source)
         command = r.recognize_google(command_listen)
-        
-        if command == "open calculator" or command == "calculator" or command == "calc":
+        print("You said: " + command + "\n")
+        if command in ('open calculator', 'calculator', 'calc'):
             print("Opening calculator now!")
             subprocess.call(["espeak", "Opening calculator now"])
             calculator.calculator()
-        elif command == "show current time" or command == "time" or command == "current time":
+
+        elif command in ('show current time','local time', 'current time', 'time'):
             time.time()
-        elif command == "ssh info" or command == "ssh information":
+
+        elif command in ('ssh info', 'ssh information'):
             subprocess.call("library/ssh.sh")
+
+        elif command in ('text', 'journal','write to text file'):
+            print("What do you want to write to the file? \n")
+            subprocess.call(['espeak', 'What do you want to write to the file?'])
+            text_listen = r.listen(source)
+            text = r.recognize_google(text_listen)
+
+            text_file = open('text_file.txt', 'w')
+            text_file.write(text)
+
+            print("The following has been written to the file: \n \n" + text)
+            subprocess.call(["espeak", "The following has been written to the file" + text])
         else:
             print("Error, something went wrong!")
     except sr.UnknownValueError as err:
