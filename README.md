@@ -30,6 +30,8 @@ Project Seb is a custom made assistant which is fully programmed and built by my
 2. Local time
 3. SSH info script
 4. TTS (Text to speech)
+5. Speech to text
+5. Writing to text file through speech to text
 
 ## Dependencies 
 
