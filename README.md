@@ -1,6 +1,6 @@
 # Project Seb in Python
 
-**Current primary version is written in C++ at https://github.com/KoalaV2/project-seb**
+**Secondary version is written in C++ at https://github.com/KoalaV2/project-seb**
 
 This is a project of mine to further improve my daily life automation and programming skills.
 
@@ -9,7 +9,6 @@ This is a project of mine to further improve my daily life automation and progra
 ## What this is
 
 Project Seb is a custom made assistant which is fully programmed and built by myself and occasionally some contributors, it is going to include a bunch of projects of mine and eventually voice recognition.
-
 ## Planned features
 
 1. TUI / GUI
