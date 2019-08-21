@@ -38,3 +38,4 @@ Project Seb is a custom made assistant which is fully programmed and built by my
 ## Dependencies 
 
 1. espeak-ng
+2. SpeechRecognition
