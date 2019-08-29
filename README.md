@@ -1,10 +1,10 @@
 # K.A.I aka Koalas artificial intelligence
 
-**Secondary version is written in C++ at https://github.com/KoalaV2/project-seb**
-
 This is a project of mine to further improve my daily life automation and programming skills.
 
 :warning: **Warning, only works in Linux, not Windows** :warning: 
+
+*Kinda works on Windows, I'm working on it okay?*
 
 ## What this is
 
