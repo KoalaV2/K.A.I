@@ -38,4 +38,4 @@ K.A.I is a custom made assistant which is fully programmed and built by myself a
 ## Dependencies 
 
 1. espeak-ng
-2. SpeechRecognition
+2. SpeechRecognition ( pip3 ) 
