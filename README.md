@@ -1,4 +1,4 @@
-# Project Seb in Python
+# K.A.I aka Koalas artificial intelligence
 
 **Secondary version is written in C++ at https://github.com/KoalaV2/project-seb**
 
