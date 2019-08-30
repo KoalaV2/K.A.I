@@ -1,15 +1,13 @@
 import math
-import pyttsx3 
-
-engine = pyttsx3.init()
+import pyttsx3
+from library.utils import say
 
 def calculator():
-    engine.say("please enter the first number")
-    engine.runAndWait()
+    say("please enter the first number")
     first_number = float(input("Please enter the first number: "))
-    engine.say("What operation shall be used?")
+    say("What operation shall be used?")
     operation = input("What operation shall be used? :")
-    engine.say("Please enter the second number")
+    say("Please enter the second number")
     second_number = float(input("Please enter the second number: "))
 
 
@@ -32,4 +30,4 @@ def calculator():
         print("Operation not recognized, exiting to main menu...")
         return
     print("\n{} {} {} is {}".format(first_number, operand, second_number, result))
-    engine.say(first_number, operand, second_number, result )
+#    say(first_number, operand, second_number, result )
