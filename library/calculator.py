@@ -30,4 +30,3 @@ def calculator():
         print("Operation not recognized, exiting to main menu...")
         return
     print("\n{} {} {} is {}".format(first_number, operand, second_number, result))
-#    say(first_number, operand, second_number, result )

@@ -50,6 +50,9 @@ with sr.Microphone() as source:
 
             print("The following has been written to the file: \n \n" + text)
             say("The following has been written to the file" + text)
+        elif command in ('goodnight', "good night", "night"):
+            say("Goodnight " + name + "Going to sleep now..")
+            subprocess.call("systemctl suspend")
 
         else:
             print("Error, something went wrong!")
