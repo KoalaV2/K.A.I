@@ -8,6 +8,7 @@ import speech_recognition as sr
 r = sr.Recognizer()
 with sr.Microphone() as source:
     try:
+        r.adjust_for_ambient_noise(source)
         print("""Hello user! \n What\'s your name?""")
         subprocess.call(["espeak", "Hello user! What's your name?"])
         name_litsen = r.listen(source)
