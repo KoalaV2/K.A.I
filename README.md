@@ -17,10 +17,9 @@ K.A.I is a custom made assistant which is fully programmed and built by myself a
 4. Weather info
 5. Google search
 6. Light control 
-7. Voice controlling (Speech to text)
-8. Chat application
-9. Website scraper
-10. Wikipedia article to PDF converter
+7. Chat application
+8. Website scraper
+9. Wikipedia article to PDF converter
 
 ## Features in the far distance
 
