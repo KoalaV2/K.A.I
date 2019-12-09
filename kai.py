@@ -11,16 +11,9 @@ r = sr.Recognizer()
 
 with sr.Microphone() as source:
     try:
-        r.adjust_for_ambient_noise(source)
-        print("""Hello user! \n What\'s your name?""")
-        say("Hello user! What's your name?")
+        say("Welcome ")
 
-        name_litsen = r.listen(source)
-        name = r.recognize_google(name_litsen)
-
-        say("Welcome " + name)
-
-        print("\n Welcome", name + "\n")
+        print("\n Welcome")
     
         print("What do you want to do today?")
         say("What do you want to do today?")
@@ -51,7 +44,7 @@ with sr.Microphone() as source:
             print("The following has been written to the file: \n \n" + text)
             say("The following has been written to the file" + text)
         elif command in ('goodnight', "good night", "night"):
-            say("Goodnight " + name + "Going to sleep now..")
+            say("Goodnight " + "Going to sleep now..")
             subprocess.call('systemctl suspend', shell=True)
 
         else:
