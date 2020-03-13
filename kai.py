@@ -2,6 +2,7 @@
 from library import calculator
 from library import time
 from library.utils import say
+import library.youtube_dl as youtube
 import os
 import subprocess
 import pyttsx3
@@ -46,6 +47,8 @@ with sr.Microphone() as source:
         elif command in ('goodnight', "good night", "night"):
             say("Goodnight " + "Going to sleep now..")
             subprocess.call('systemctl suspend', shell=True)
+        elif command in ('download YouTube video', 'get youtube video'):
+            youtube.youtube()
 
         else:
             print("Error, something went wrong!")
