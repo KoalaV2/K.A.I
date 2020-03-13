@@ -10,6 +10,8 @@ def youtube():
         say("What is the title of the youtube video?")
         title_listen = r.listen(source)
         title = r.recognize_google(title_listen)
+        print("Searching and downloading:" + title)
+        say("searching and downloading" + title)
         subprocess.call(f'youtube-dl "ytsearch1:{title}"', shell=True)
 
 
