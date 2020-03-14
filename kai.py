@@ -14,12 +14,8 @@ r = sr.Recognizer()
 
 with sr.Microphone() as source:
     try:
-        say("Welcome ")
-
-        print("\n Welcome")
-    
-        print("What do you want to do today?")
-        say("What do you want to do today?")
+        print("What do you want me to do?")
+        say("What do you want me to do?")
 
         command_listen = r.listen(source)
         command = r.recognize_google(command_listen)
@@ -49,10 +45,14 @@ with sr.Microphone() as source:
         elif command in ('goodnight', "good night", "night"):
             say("Goodnight " + "Going to sleep now..")
             subprocess.call('systemctl suspend', shell=True)
-        elif command in ('download YouTube video', 'get youtube video'):
+        elif command in ('download YouTube video', 'get YouTube video', 'download YouTube videos'):
             youtube.youtube()
         elif command in ('search Wikipedia summary', 'find Wikipedia summary', 'search Wikipedia for summary'):
             wikipedia_summary.wikipedia_summary()
+        elif command in ('help', 'show commands', 'show help'):
+            print("This is what I can do, I can show the current time, write to a text file, download a youtube video, search a wikipedia summary and be a calculator")
+            say("This is what I can do, I can show the current time, write to a text file, download a youtube video, search a wikipedia summary and be a calculator")
+
         else:
             print("Error, something went wrong!")
     except sr.UnknownValueError as err:
