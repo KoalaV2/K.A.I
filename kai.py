@@ -3,6 +3,7 @@ from library import calculator
 from library import time
 from library.utils import say
 import library.youtube_dl as youtube
+from library import wikipedia_summary
 import os
 import subprocess
 import pyttsx3
@@ -49,7 +50,8 @@ with sr.Microphone() as source:
             subprocess.call('systemctl suspend', shell=True)
         elif command in ('download YouTube video', 'get youtube video'):
             youtube.youtube()
-
+        elif command in ('search Wikipedia summary', 'find wikipedia summary', 'search wikipedia for summary'):
+            wikipedia_summary.wikipedia_summary()
         else:
             print("Error, something went wrong!")
     except sr.UnknownValueError as err:
