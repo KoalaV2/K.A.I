@@ -53,7 +53,7 @@ try:
             elif command in ('help', 'show commands', 'show help'):
                 print("This is what I can do, I can show the current time, write to a text file, download a youtube video, search a wikipedia summary and be a calculator")
                 say("This is what I can do, I can show the current time, write to a text file, download a youtube video, search a wikipedia summary and be a calculator")
-            elif command in ('quit'):
+            elif command in ('quit', 'no', 'no quit the program', 'no thank you', 'goodbye', 'bye'):
                 print("Exiting program...")
                 say("Exiting program...")
                 break
