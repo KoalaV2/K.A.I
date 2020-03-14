@@ -33,6 +33,7 @@ K.A.I is a custom made assistant which is fully programmed and built by myself a
 4. TTS (Text to speech)
 5. Speech to text
 5. Writing to text file through speech to text
+6. YouTube video downloader
 
 ## Dependencies 
 
