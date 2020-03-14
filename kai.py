@@ -43,16 +43,21 @@ try:
 
                 print("The following has been written to the file: \n \n" + text)
                 say("The following has been written to the file" + text)
+                
             elif command in ('goodnight', "good night", "night"):
                 say("Goodnight " + "Going to sleep now..")
                 subprocess.call('systemctl suspend', shell=True)
+
             elif command in ('download YouTube video', 'get YouTube video', 'download YouTube videos', 'download a YouTube video'):
                 youtube.youtube()
+                
             elif command in ('search Wikipedia summary', 'find Wikipedia summary', 'search Wikipedia for summary'):
                 wikipedia_summary.wikipedia_summary()
+
             elif command in ('help', 'show commands', 'show help'):
                 print("This is what I can do, I can show the current time, write to a text file, download a youtube video, search a wikipedia summary and be a calculator")
                 say("This is what I can do, I can show the current time, write to a text file, download a youtube video, search a wikipedia summary and be a calculator")
+
             elif command in ('quit', 'no', 'no quit the program', 'no thank you', 'goodbye', 'bye'):
                 print("Exiting program...")
                 say("Exiting program...")
