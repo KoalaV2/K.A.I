@@ -1,9 +1,9 @@
-import pyttsx3
+from gtts import gTTS
+import playsound
+import os
 
 def say(string):
-    engine = pyttsx3.init()
-    voices = engine.getProperty('voices') 
-    engine.setProperty('voice', voices[9].id) 
-    engine.setProperty('rate', 170)
-    engine.say(string)
-    engine.runAndWait()
+    tts = gTTS(string)
+    tts.save('tts-temp.mp3')
+    playsound.playsound('tts-temp.mp3', True)
+    os.remove("tts-temp.mp3")

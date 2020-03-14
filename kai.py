@@ -6,7 +6,8 @@ import library.youtube_dl as youtube
 from library import wikipedia_summary
 import os
 import subprocess
-import pyttsx3
+from gtts import gTTS
+import playsound
 import speech_recognition as sr
 
 r = sr.Recognizer()
