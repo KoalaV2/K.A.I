@@ -15,6 +15,7 @@ def youtube():
         say("searching and downloading" + title)
         subprocess.call(f'youtube-dl "ytsearch1:{title}"', shell=True)
         say(title + "has successfully been downloaded.")
+        print(title + "has successfully been downloaded. \n")
 
 
         
