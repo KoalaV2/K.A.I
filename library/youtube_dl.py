@@ -1,7 +1,6 @@
 import pyttsx3
 from library.utils import say
 import speech_recognition as sr 
-import pyttsx3
 import subprocess
 r = sr.Recognizer()
 command = 'youtube-dl "ytsearch1:'
