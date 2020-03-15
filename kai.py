@@ -14,8 +14,8 @@ r = sr.Recognizer()
 
 
 try:
-    print("What do you want me to do Sir?")
-    say("What do you want me to do Sir?")
+    print("What do you want me to do?")
+    say("What do you want me to do?")
     while True:
         with sr.Microphone() as source:
             command_listen = r.listen(source)
@@ -51,7 +51,7 @@ try:
             elif command in ('download YouTube video', 'get YouTube video', 'download YouTube videos', 'download a YouTube video'):
                 youtube.youtube()
                 
-            elif command in ('search Wikipedia summary', 'find Wikipedia summary', 'search Wikipedia for summary'):
+            elif command in ('find Wikipedia summary', 'find a Wikipedia summary','search Wikipedia summary', 'find Wikipedia summary', 'search Wikipedia for summary'):
                 wikipedia_summary.wikipedia_summary()
 
             elif command in ('help', 'show commands', 'show help'):
@@ -59,13 +59,14 @@ try:
                 say("This is what I can do, I can show the current time, write to a text file, download a youtube video, search a wikipedia summary and be a calculator")
 
             elif command in ('quit', 'no', 'no quit the program', 'no thank you', 'goodbye', 'bye'):
-                print("Exiting program...")
-                say("Exiting program...")
+                print("Exiting program... Have a great day!")
+                say("Exiting program... Have a great day!")
                 break
             else:
                 print("Error, something went wrong!")
-            say("Anything else Sir?")
-            print("Anything else Sir?")
+                say("Error, something went wrong!")
+            say("Anything else?")
+            print("Anything else?")
 
 except sr.UnknownValueError as err:
    print("Encountered an error: ", err)
