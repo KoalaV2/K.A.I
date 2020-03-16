@@ -38,6 +38,8 @@ K.A.I is a custom made assistant which is fully programmed and built by myself a
 8. Wikipedia summary downloader
 ## Dependencies 
 
-1. pyttsx3 
-2. SpeechRecognition ( pip3 )
+1. gTTS
+2. wikipedia 
+2. SpeechRecognition
 3. PyAudio
+4. youtube-dl
