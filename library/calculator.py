@@ -41,3 +41,4 @@ def calculator():
             print("Operation not recognized, exiting to main menu...")
             return
         print("\n{} {} {} is {}".format(first_number, operand, second_number, result))
+        say("\n{} {} {} is {}".format(first_number, operand, second_number, result))
