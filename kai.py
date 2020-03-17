@@ -23,13 +23,13 @@ try:
             print("You said: " + command + "\n")
             if command in ('open calculator', 'calculator', 'calc'):
                 print("Opening calculator now!")
-                say("Opening calculator now! Hold on...")
+                say("Opening calculator now!")
                 calculator.calculator()
 
             elif command in ('show current time','local time', 'current time', 'time'):
                 time.time()
 
-            elif command in ('ssh info', 'ssh information'):
+            elif command in ('SSH info', 'SSH information'):
                 subprocess.call("library/ssh.sh")
 
             elif command in ('text', 'journal','write to text file'):
