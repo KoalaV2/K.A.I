@@ -1,4 +1,3 @@
-import pyttsx3
 from library.utils import say
 import speech_recognition as sr 
 import subprocess
