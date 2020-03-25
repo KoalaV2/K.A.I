@@ -15,6 +15,7 @@ r = sr.Recognizer()
 trigger = "wake up"
 r = sr.Recognizer()
 
+say("Beginning to listen")
 print("Beginning to listen...")
 
 def listen():
