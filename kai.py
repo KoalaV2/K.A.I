@@ -4,14 +4,12 @@ from library import time
 from library.utils import say
 import library.youtube_dl as youtube
 from library import wikipedia_summary
+from library import weather
 import os
 import subprocess
 from gtts import gTTS
 import playsound
 import speech_recognition as sr
-
-r = sr.Recognizer()
-
 trigger = "wake up"
 r = sr.Recognizer()
 
@@ -25,8 +23,7 @@ def listen():
         try:
                 return r.recognize_google(audio)
         except sr.UnknownValueError:
-                print("Could not understand audio")
-        return ""
+            return ""
 
 while 1:
     if listen() == trigger:
@@ -49,7 +46,7 @@ while 1:
                     elif command in ('SSH info', 'SSH information'):
                         subprocess.call("library/ssh.sh")
 
-                    elif command in ('text', 'journal','write to text file'):
+                    elif command in ('text', 'write to a text file', 'Journal','write to text file'):
                         print("What do you want to write to the file? \n")
                         say("What do you want to write to the file?")
                         text_listen = r.listen(source)
@@ -75,6 +72,9 @@ while 1:
                         print("This is what I can do, I can show the current time, write to a text file, download a youtube video, search a wikipedia summary and be a calculator")
                         say("This is what I can do, I can show the current time, write to a text file, download a youtube video, search a wikipedia summary and be a calculator")
 
+                    elif command in ('weather', 'check weather', 'see weather'):
+                        weather.weather()
+                        
                     elif command in ('quit', 'no', 'no quit the program', 'no thank you', 'goodbye', 'bye'):
                         print("Exiting program... Have a great day!")
                         say("Exiting program... Have a great day!")
