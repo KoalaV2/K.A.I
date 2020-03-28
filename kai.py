@@ -10,6 +10,7 @@ import subprocess
 from gtts import gTTS
 import playsound
 import speech_recognition as sr
+import playsound
 trigger = "wake up"
 r = sr.Recognizer()
 
@@ -28,6 +29,7 @@ def listen():
 while 1:
     if listen() == trigger:
         try:
+            playsound.playsound('library/wake_up_noise.wav', True)
             print("What do you want me to do?")
             say("What do you want me to do?")
             while True:
@@ -76,8 +78,8 @@ while 1:
                         weather.weather()
                         
                     elif command in ('quit', 'no', 'no quit the program', 'no thank you', 'goodbye', 'bye'):
-                        print("Exiting program... Have a great day!")
-                        say("Exiting program... Have a great day!")
+                        print("Returning to standby... Have a great day!")
+                        say("Returning to standby... Have a great day!")
                         break
                     else:
                         print("Error, something went wrong!")
@@ -87,3 +89,4 @@ while 1:
 
         except sr.UnknownValueError as err:
             print("Encountered an error: ", err)
+            say("Encountered an error: please wake me up again")
