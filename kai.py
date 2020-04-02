@@ -67,7 +67,7 @@ while 1:
                     elif command in ('download YouTube video', 'get YouTube video', 'download YouTube videos', 'download a YouTube video'):
                         youtube.youtube()
                         
-                    elif command in ('find Wikipedia summary', 'find a Wikipedia summary','search Wikipedia summary', 'find Wikipedia summary', 'search Wikipedia for summary'):
+                    elif command in ('find Wikipedia summary','read a Wikipedia summary', 'find a Wikipedia summary','search Wikipedia summary', 'find Wikipedia summary', 'search Wikipedia for summary'):
                         wikipedia_summary.wikipedia_summary()
 
                     elif command in ('help', 'show commands', 'show help'):
@@ -80,6 +80,7 @@ while 1:
                     elif command in ('quit', 'no', 'no quit the program', 'no thank you', 'goodbye', 'bye'):
                         print("Returning to standby... Have a great day!")
                         say("Returning to standby... Have a great day!")
+                        playsound.playsound('library/shutdown.mp3', True)
                         break
                     else:
                         print("Error, something went wrong!")
