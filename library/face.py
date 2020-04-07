@@ -42,12 +42,14 @@ def face_rec():
 
     for (top, right, bottom, left), face_encoding in zip(face_locations, face_encodings):
         matches = face_recognition.compare_faces(known_encodings, face_encoding)
+
         name = "Unknown"
         face_distances = face_recognition.face_distance(known_encodings, face_encoding)
         best_match_index = np.argmin(face_distances)
-        if matches[best_match_index]:
+        if len(matches) >= best_match_index + 1 and matches[best_match_index]:
             name = known_names[best_match_index]
-
+        
+   
     #Removing the image file as it's not needed anymore until when it is started again
     os.remove("filename.jpg")
 
