@@ -9,7 +9,7 @@ import configparser as cp
 from library.utils import say
 
 config = cp.ConfigParser()
-config.read('faces.cfg')
+config.read('library/faces.cfg')
 if 'faces' not in config: exit(1)
 
 def face_rec():
@@ -31,6 +31,8 @@ def face_rec():
         known_encodings.append(encoding)
         known_names.append(name)
         print("%s: %s" % (name, config['faces'][name]))
+        say("Welcome" + name)
+        print("Welcome" + name)
 
     unknown_image = face_recognition.load_image_file("filename.jpg")
 
@@ -38,15 +40,14 @@ def face_rec():
     face_encodings = face_recognition.face_encodings(unknown_image, face_locations)
 
 
-    for face_encoding in zip(face_locations, face_encodings):
+    for (top, right, bottom, left), face_encoding in zip(face_locations, face_encodings):
         matches = face_recognition.compare_faces(known_encodings, face_encoding)
         name = "Unknown"
         face_distances = face_recognition.face_distance(known_encodings, face_encoding)
         best_match_index = np.argmin(face_distances)
         if matches[best_match_index]:
             name = known_names[best_match_index]
-            say("Welcome" + name)
-            print(name)
+
     #Removing the image file as it's not needed anymore until when it is started again
     os.remove("filename.jpg")
 
