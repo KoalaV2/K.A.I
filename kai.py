@@ -5,6 +5,7 @@ from library.utils import say
 import library.youtube_dl as youtube
 from library import wikipedia_summary
 from library import weather
+import library.face as face_rec
 import os
 import subprocess
 from gtts import gTTS
@@ -30,6 +31,8 @@ while 1:
     if listen() == trigger:
         try:
             playsound.playsound('library/wake_up_noise.wav', True)
+            print("identifying face....")
+            face_rec.face_rec()
             print("What do you want me to do?")
             say("What do you want me to do?")
             while True:
