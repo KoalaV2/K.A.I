@@ -30,7 +30,7 @@ def listen():
 while 1:
     if listen() == trigger:
         try:
-            playsound.playsound('library/wake_up_noise.wav', True)
+            playsound.playsound('library/sounds/wake_up_noise.wav', True)
             print("identifying face....")
             face_rec.face_rec()
             print("What do you want me to do?")
@@ -83,7 +83,7 @@ while 1:
                     elif command in ('quit', 'no', 'no quit the program', 'no thank you', 'goodbye', 'bye'):
                         print("Returning to standby... Have a great day!")
                         say("Returning to standby... Have a great day!")
-                        playsound.playsound('library/shutdown.mp3', True)
+                        playsound.playsound('library/sounds/shutdown.mp3', True)
                         break
                     else:
                         print("Error, something went wrong!")

@@ -133,4 +133,3 @@ dmypy.json
 library/images/*.jpg
 filename.jpg
 tts-temp.mp3
-library/faces.cfg
