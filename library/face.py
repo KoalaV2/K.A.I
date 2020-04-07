@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
-import os 
+import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import pygame.camera
 import face_recognition
 import numpy as np
+import configparser as cp
 from library.utils import say
+
+config = cp.ConfigParser()
+config.read('faces.cfg')
+if 'faces' not in config: exit(1)
 
 def face_rec():
     pygame.camera.init()
@@ -15,20 +20,17 @@ def face_rec():
     pygame.image.save(img,"filename.jpg")
     cam.stop()
 
-    theo_image = face_recognition.load_image_file("library/images/theo.jpg")
-    theo_face_encoding = face_recognition.face_encodings(theo_image)[0]
+    known_encodings = []
+    known_names = []
 
-    raghid_image = face_recognition.load_image_file(f"library/images/raghid.jpg")
-    raghid_face_encoding = face_recognition.face_encodings(raghid_image)[0]
+    for name in config['faces']:
+        file = config['faces'][name]
+        image = face_recognition.load_image_file(file)
+        encoding = face_recognition.face_encodings(image)
 
-    known_face_encodings = [
-        theo_face_encoding,
-        raghid_face_encoding
-    ]
-    known_face_names = [
-        "Theo",
-        "Raghid"
-    ]
+        known_encodings.append(encoding)
+        known_names.append(name)
+        print("%s: %s" % (name, config['faces'][name]))
 
     unknown_image = face_recognition.load_image_file("filename.jpg")
 
@@ -36,12 +38,12 @@ def face_rec():
     face_encodings = face_recognition.face_encodings(unknown_image, face_locations)
 
     for face_encoding in zip(face_locations, face_encodings):
-        matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
+        matches = face_recognition.compare_faces(known_encodings, face_encoding)
         name = "Unknown"
-        face_distances = face_recognition.face_distance(known_face_encodings, face_encoding)
+        face_distances = face_recognition.face_distance(known_encodings, face_encoding)
         best_match_index = np.argmin(face_distances)
         if matches[best_match_index]:
-            name = known_face_names[best_match_index]
+            name = known_names[best_match_index]
             say("Welcome" + name)
             print(name)
     #Removing the image file as it's not needed anymore until when it is started again
