@@ -37,6 +37,7 @@ def face_rec():
     face_locations = face_recognition.face_locations(unknown_image)
     face_encodings = face_recognition.face_encodings(unknown_image, face_locations)
 
+
     for face_encoding in zip(face_locations, face_encodings):
         matches = face_recognition.compare_faces(known_encodings, face_encoding)
         name = "Unknown"
