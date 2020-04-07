@@ -18,16 +18,16 @@ def face_rec():
     theo_image = face_recognition.load_image_file("library/images/theo.jpg")
     theo_face_encoding = face_recognition.face_encodings(theo_image)[0]
 
-    raghid_image = face_recognition.load_image_file(f"library/images/raghid.jpg")
-    raghid_face_encoding = face_recognition.face_encodings(raghid_image)[0]
+#    raghid_image = face_recognition.load_image_file(f"library/images/raghid.jpg")
+#    raghid_face_encoding = face_recognition.face_encodings(raghid_image)[0]
 
     known_face_encodings = [
         theo_face_encoding,
-        raghid_face_encoding
+        #raghid_face_encoding
     ]
     known_face_names = [
-        "Theo",
-        "Raghid"
+        "Theo"
+ #       "Raghid"
     ]
 
     unknown_image = face_recognition.load_image_file("filename.jpg")
@@ -35,7 +35,7 @@ def face_rec():
     face_locations = face_recognition.face_locations(unknown_image)
     face_encodings = face_recognition.face_encodings(unknown_image, face_locations)
 
-    for face_encoding in zip(face_locations, face_encodings):
+    for (top, right, bottom, left), face_encoding in zip(face_locations, face_encodings):
         matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
         name = "Unknown"
         face_distances = face_recognition.face_distance(known_face_encodings, face_encoding)
