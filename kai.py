@@ -59,7 +59,7 @@ while 1:
                         text_listen = r.listen(source)
                         text = r.recognize_google(text_listen)
 
-                        text_file = open('text_file.txt', 'w')
+                        text_file = open(f'{username}_text_file.txt', 'w')
                         text_file.write(text)
 
                         print("The following has been written to the file: \n \n" + text)

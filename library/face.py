@@ -33,7 +33,7 @@ def face_rec():
 
         known_encodings.append(encoding)
         known_names.append(name)
-        print("%s: %s" % (name, config['faces'][name]))
+        #print("%s: %s" % (name, config['faces'][name]))
 
     unknown_image = face_recognition.load_image_file("filename.jpg")
 
