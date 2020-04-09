@@ -37,7 +37,6 @@ while 1:
             username = face_rec.global_name
             print(f"Hello {username} What do you want me to do?")
             say("Hello" + username + "What do you want me to do?")
-            say("What do you want me to do?")
             while True:
                 with sr.Microphone() as source:
                     command_listen = r.listen(source)
