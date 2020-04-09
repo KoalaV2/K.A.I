@@ -26,13 +26,11 @@ def face_rec():
     for name in config['faces']:
         file = config['faces'][name]
         image = face_recognition.load_image_file(file)
-        encoding = face_recognition.face_encodings(image)
+        encoding = face_recognition.face_encodings(image)[0]
 
         known_encodings.append(encoding)
         known_names.append(name)
         print("%s: %s" % (name, config['faces'][name]))
-        say("Welcome" + name)
-        print("Welcome" + name)
 
     unknown_image = face_recognition.load_image_file("filename.jpg")
 
@@ -46,8 +44,10 @@ def face_rec():
         name = "Unknown"
         face_distances = face_recognition.face_distance(known_encodings, face_encoding)
         best_match_index = np.argmin(face_distances)
-        if len(matches) >= best_match_index + 1 and matches[best_match_index]:
+        if matches[best_match_index]:
             name = known_names[best_match_index]
+            print("Welcome " + name)
+            say("Welcome" + name)
         
    
     #Removing the image file as it's not needed anymore until when it is started again
