@@ -15,6 +15,7 @@ import playsound
 trigger = "wake up"
 r = sr.Recognizer()
 
+
 say("Beginning to listen")
 print("Beginning to listen...")
 
@@ -33,7 +34,9 @@ while 1:
             playsound.playsound('library/sounds/wake_up_noise.wav', True)
             print("identifying face....")
             face_rec.face_rec()
-            print("What do you want me to do?")
+            username = face_rec.global_name
+            print(f"Hello {username} What do you want me to do?")
+            say("Hello" + username "What do you want me to do?")
             say("What do you want me to do?")
             while True:
                 with sr.Microphone() as source:

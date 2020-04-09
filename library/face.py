@@ -12,7 +12,10 @@ config = cp.ConfigParser()
 config.read('library/faces.cfg')
 if 'faces' not in config: exit(1)
 
+global_name = "Unkown"
+
 def face_rec():
+    global global_name
     pygame.camera.init()
     cam = pygame.camera.Camera("/dev/video0",(640,480))
     cam.start()
@@ -41,15 +44,11 @@ def face_rec():
     for (top, right, bottom, left), face_encoding in zip(face_locations, face_encodings):
         matches = face_recognition.compare_faces(known_encodings, face_encoding)
 
-        name = "Unknown"
         face_distances = face_recognition.face_distance(known_encodings, face_encoding)
         best_match_index = np.argmin(face_distances)
         if matches[best_match_index]:
-            name = known_names[best_match_index]
-            print("Welcome " + name)
-            say("Welcome" + name)
+            global_name = known_names[best_match_index]
         
-   
     #Removing the image file as it's not needed anymore until when it is started again
     os.remove("filename.jpg")
 
