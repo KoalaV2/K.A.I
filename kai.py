@@ -30,15 +30,15 @@ def listen():
             return ""
 
 while 1:
-    if listen() == trigger:
+    if listen() == trigger or input() == trigger:
         try:
             playsound.playsound('library/sounds/wake_up_noise.wav', True)
             print("identifying face....")
             face_rec.face_rec()
             username = face_rec.global_name
-            greeting = time.global_greeting
-            print(time.global_greeting + f" {username}, what can I do for you?")
-            say(time.global_greeting + f" {username}, what can I do for you?")
+            greeting = time.greeting
+            print(greeting(time.now.hour), f" {username}, what can I do for you?")
+            say(greeting(time.now.hour) + f" {username}, what can I do for you?")
             while True:
                 with sr.Microphone() as source:
                     command_listen = r.listen(source)
@@ -49,8 +49,8 @@ while 1:
                         say("Opening calculator now!")
                         calculator.calculator()
 
-                    elif command in ('show current time','local time', 'current time', 'time'):
-                        print(time.global_hour)
+                    #elif command in ('show current time','local time', 'current time', 'time'):
+                    #    print(time.global_hour)
 
                     elif command in ('SSH info', 'SSH information'):
                         subprocess.call("library/ssh.sh")
