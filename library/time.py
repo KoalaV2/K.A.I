@@ -1,10 +1,11 @@
-from datetime import datetime
-from library.utils import say
+import datetime
+now = datetime.datetime.now()
+global_hour = now.hour
+if global_hour < 12:
+    global_greeting = "Good morning"
+elif global_hour < 18:
+    global_greeting = "Good afternoon"
+else:
+    global_greeting = "Good night"
 
-def time():
-    now = datetime.utcnow()
-    
-    current_time = now.strftime("%H:%M")
-
-    say("The current time is " + current_time)
-    print("The current time is:", current_time)
+    print("{}!".format(global_greeting))

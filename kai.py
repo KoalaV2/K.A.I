@@ -12,6 +12,7 @@ from gtts import gTTS
 import playsound
 import speech_recognition as sr
 import playsound
+import library.time
 trigger = "wake up"
 r = sr.Recognizer()
 
@@ -35,8 +36,9 @@ while 1:
             print("identifying face....")
             face_rec.face_rec()
             username = face_rec.global_name
-            print(f"Hello {username} What do you want me to do?")
-            say("Hello" + username + "What do you want me to do?")
+            greeting = time.global_greeting
+            print(time.global_greeting + f" {username}, what can I do for you?")
+            say(time.global_greeting + f" {username}, what can I do for you?")
             while True:
                 with sr.Microphone() as source:
                     command_listen = r.listen(source)
@@ -48,7 +50,7 @@ while 1:
                         calculator.calculator()
 
                     elif command in ('show current time','local time', 'current time', 'time'):
-                        time.time()
+                        print(time.global_hour)
 
                     elif command in ('SSH info', 'SSH information'):
                         subprocess.call("library/ssh.sh")
