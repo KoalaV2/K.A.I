@@ -4,21 +4,17 @@ import subprocess
 import webbrowser
 r = sr.Recognizer()
 command = 'youtube-dl "ytsearch1:'
-def youtube():
+def youtube(title):
     with sr.Microphone() as source:
-        say("What is the title of the youtube video?")
-        print("What is the title of the youtube video?")
-        title_listen = r.listen(source)
-        title = r.recognize_google(title_listen)
         say("What name do you want the file to have?")
         print("What name do you want the file to have?")
         file_listen = r.listen(source)
         file_name = r.recognize_google(file_listen)
-        print("Searching and downloading:" + title)
-        say("searching and downloading" + title)
+        print("Searching and downloading:" + ' '.join(title))
+        say("searching and downloading" + ' '.join(title))
         subprocess.call(f'youtube-dl "ytsearch1:{title}" --output "{file_name}"', shell=True)
-        say(title + "has successfully been downloaded.")
-        print(title + "has successfully been downloaded. \n")
+        say(' '.join(title) + "has successfully been downloaded.")
+        print(' '.join(title) + "has successfully been downloaded. \n")
         say("Do you want to play the file?")
         print("Do you want to play the file?")
         play_file_listen = r.listen(source)

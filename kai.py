@@ -17,7 +17,7 @@ trigger = "wake up"
 r = sr.Recognizer()
 
 
-say("Beginning to listen")
+#say("Beginning to listen")
 print("Beginning to listen...")
 
 def listen():
@@ -49,8 +49,8 @@ while 1:
                         say("Opening calculator now!")
                         calculator.calculator()
 
-                    #elif command in ('show current time','local time', 'current time', 'time'):
-                    #    print(time.global_hour)
+                    elif command in ('show current time','local time', 'current time', 'time'):
+                        print(time.now.hour)
 
                     elif command in ('SSH info', 'SSH information'):
                         subprocess.call("library/ssh.sh")
@@ -71,11 +71,15 @@ while 1:
                         say("Goodnight " + "Going to sleep now..")
                         subprocess.call('systemctl suspend', shell=True)
 
-                    elif command in ('download YouTube video', 'get YouTube video', 'download YouTube videos', 'download a YouTube video'):
-                        youtube.youtube()
+                    elif command.startswith('download') and command.endswith('from YouTube'):
+                        words = command.split() 
+                        title = words[1:][:-2]
+                        youtube.youtube(title)
                         
-                    elif command in ('find Wikipedia summary','read a Wikipedia summary', 'find a Wikipedia summary','search Wikipedia summary', 'find Wikipedia summary', 'search Wikipedia for summary'):
-                        wikipedia_summary.wikipedia_summary()
+                    elif command.startswith('find summary about') and command.endswith('on Wikipedia'):
+                        words = command.split()
+                        summary = words[3:][:-2]
+                        wikipedia_summary.wikipedia_summary(summary)
 
                     elif command in ('help', 'show commands', 'show help'):
                         print("This is what I can do, I can show the current time, write to a text file, download a youtube video, search a wikipedia summary and be a calculator")

@@ -13,7 +13,6 @@ config.read('library/faces.cfg')
 if 'faces' not in config: exit(1)
 
 global_name = "Unknown"
-
 def face_rec():
     global global_name
     pygame.camera.init()
