@@ -85,19 +85,23 @@ while 1:
                         print("This is what I can do, I can show the current time, write to a text file, download a youtube video, search a wikipedia summary and be a calculator")
                         say("This is what I can do, I can show the current time, write to a text file, download a youtube video, search a wikipedia summary and be a calculator")
 
-                    elif command in ('weather', 'check weather', 'see weather'):
-                        weather.weather()
+                    elif command.startswith('look up weather in'):
+                        words = command.split()
+                        city_name = words[4:]
+                        weather.weather(city_name)
                         
                     elif command in ('quit', 'no', 'no quit the program', 'no thank you', 'goodbye', 'bye'):
                         print("Returning to standby... Have a great day!")
                         say("Returning to standby... Have a great day!")
                         playsound.playsound('library/sounds/shutdown.mp3', True)
+                        r.adjust_for_ambient_noise(source)
                         break
                     else:
                         print("Error, something went wrong!")
                         say("Error, something went wrong!")
                     say("Anything else?")
                     print("Anything else?")
+                    
 
         except sr.UnknownValueError as err:
             print("Encountered an error: ", err)
