@@ -19,10 +19,6 @@ K.A.I is a custom made assistant which is fully programmed and built by myself a
 6. Website scraper
 7. Wikipedia article to PDF converter
 
-## Features in the far distance
-
-1. Password safe
-
 ## Finished features
 
 1. Calculator
