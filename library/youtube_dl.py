@@ -3,7 +3,7 @@ import speech_recognition as sr
 import subprocess
 import webbrowser
 r = sr.Recognizer()
-command = 'youtube-dl "ytsearch1:'
+inp = 'youtube-dl "ytsearch1:'
 def youtube(title):
     with sr.Microphone() as source:
         say("What name do you want the file to have?")

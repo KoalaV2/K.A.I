@@ -10,7 +10,9 @@ from library.utils import say
 
 config = cp.ConfigParser()
 config.read('library/faces.cfg')
-if 'faces' not in config: exit(1)
+if 'faces' not in config: 
+    print("no faces found in config.. exiting")
+    exit(1)
 
 global_name = "Unknown"
 def face_rec():
