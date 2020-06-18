@@ -105,7 +105,7 @@ def bag_of_words(s,words):
             if w == se:
                 bag[i] = 1
     return numpy.array(bag)
-
+print("Beggining to listen....")
 
 while 1:
     if listen() == trigger or input() == trigger:
