@@ -8,7 +8,7 @@ import json
 import tflearn
 import pickle
 from gtts import gTTS
-import playsound
+from pydub.playback import play
 from library.utils import say
 from library import calculator
 from library import time
@@ -20,7 +20,9 @@ import os
 import subprocess
 import speech_recognition as sr
 import library.time
-trigger = "hello"
+from pydub import AudioSegment
+from pydub.playback import play
+trigger = "hey assistant"
 r = sr.Recognizer()
 
 def listen():
@@ -108,9 +110,10 @@ def bag_of_words(s,words):
 print("Beggining to listen....")
 
 while 1:
-    if listen() == trigger or input() == trigger:
+    if listen() == trigger:
         try:
-            playsound.playsound('library/sounds/wake_up_noise.wav', True)
+            sound = AudioSegment.from_mp3('library/sounds/wake_up_noise.mp3')
+            play(sound)
             print("identifying face....")
             face_rec.face_rec()
             username = face_rec.global_name
@@ -183,7 +186,8 @@ while 1:
                     elif inp in ('quit', 'no', 'no quit the program', 'no thank you', 'goodbye', 'bye'):
                         print("Returning to standby... Have a great day!")
                         say("Returning to standby... Have a great day!")
-                        playsound.playsound('library/sounds/shutdown.mp3', True)
+                        shutdown_sound = AudioSegment.from_mp3('library/sounds/shutdown.mp3')
+                        play(shutdown_sound)
                         r.adjust_for_ambient_noise(source)
                         break
                     else:

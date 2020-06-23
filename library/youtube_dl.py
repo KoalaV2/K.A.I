@@ -2,6 +2,7 @@ from library.utils import say
 import speech_recognition as sr 
 import subprocess
 import webbrowser
+import cv2
 r = sr.Recognizer()
 inp = 'youtube-dl "ytsearch1:'
 def youtube(title):
@@ -20,7 +21,19 @@ def youtube(title):
         play_file_listen = r.listen(source)
         play_file = r.recognize_google(play_file_listen)
         if play_file == "yes" or "Yes":
-            webbrowser.open(f"{file_name}.mkv")
+            cap = cv2.VideoCapture(f"{file_name}.mkv")
+            ret, frame = cap.read()
+            while(1):
+              ret, frame = cap.read()
+              cv2.namedWindow("window", cv2.WND_PROP_FULLSCREEN)
+              cv2.setWindowProperty("window",cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
+              cv2.imshow("window", frame)
+              if cv2.waitKey(1) & 0xFF == ord('q') or ret==False :
+                  cap.release()
+                  cv2.destroyAllWindows()
+                  break
+              cv2.imshow('frame',frame)
 
-        elif play_file == "no":
+
+        else:
             pass

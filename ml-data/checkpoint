@@ -1,2 +1,2 @@
-model_checkpoint_path: "/home/koala/K.A.I-chatbot/ml-data/model.tflearn"
-all_model_checkpoint_paths: "/home/koala/K.A.I-chatbot/ml-data/model.tflearn"
+model_checkpoint_path: "/home/koala/K.A.I/ml-data/model.tflearn"
+all_model_checkpoint_paths: "/home/koala/K.A.I/ml-data/model.tflearn"

@@ -18,7 +18,7 @@ global_name = "Unknown"
 def face_rec():
     global global_name
     pygame.camera.init()
-    cam = pygame.camera.Camera("/dev/video0",(640,480))
+    cam = pygame.camera.Camera("/dev/video2",(640,480))
     cam.start()
     img = cam.get_image()
     pygame.image.save(img,"filename.jpg")
