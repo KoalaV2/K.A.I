@@ -1,6 +1,6 @@
 nltk
 numpy
-tensorflow==1.15.3
+tensorflow==2.4.0
 tflearn
 gtts
 pydub
