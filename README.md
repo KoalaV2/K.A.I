@@ -11,13 +11,14 @@ This is a project of mine to further improve my daily life automation and progra
 K.A.I is a custom made assistant which is fully programmed and built by myself and occasionally some contributors, it is going to include a bunch of projects of mine and eventually voice recognition.
 ## Planned features
 
-1. TUI / GUI
-2. Better security / permission control
-3. Google search
-4. Light control 
-5. Chat application
-6. Website scraper
-7. Wikipedia article to PDF converter
+1. Face recognition using IR camera
+2. TUI / GUI
+3. Better security / permission control
+4. Google search
+5. Light control 
+6. Chat application
+7. Website scraper
+8. Wikipedia article to PDF converter
 
 ## Finished features
 

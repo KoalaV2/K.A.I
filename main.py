@@ -110,7 +110,7 @@ def bag_of_words(s,words):
 print("Beggining to listen....")
 
 while 1:
-    if listen() == trigger:
+    if input() == trigger:
         try:
             sound = AudioSegment.from_mp3('library/sounds/wake_up_noise.mp3')
             play(sound)
