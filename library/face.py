@@ -8,14 +8,14 @@ from library.utils import say
 
 config = cp.ConfigParser()
 config.read('library/faces.cfg')
-if 'faces' not in config: 
+if 'faces' not in config:
     print("no faces found in config.. exiting")
     exit(1)
 
 global_name = "Unknown"
 def face_rec():
     global global_name
-    video_capture = cv2.VideoCapture(0)
+    video_capture = cv2.VideoCapture(2)
     ret, frame = video_capture.read()
     rgb_frame = frame[:, :, ::-1]
 
@@ -45,7 +45,7 @@ def face_rec():
         best_match_index = np.argmin(face_distances)
         if matches[best_match_index]:
             global_name = known_names[best_match_index]
-        
+
     #Removing the image file as it's not needed anymore until when it is started again
     #os.remove("filename.jpg")
 

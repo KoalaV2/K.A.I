@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import nltk
 from nltk.stem.lancaster import LancasterStemmer
 stemmer = LancasterStemmer()
@@ -22,7 +23,7 @@ import speech_recognition as sr
 import library.time
 from pydub import AudioSegment
 from pydub.playback import play
-trigger = "hey assistant"
+trigger = "hello"
 r = sr.Recognizer()
 
 def listen():
@@ -36,7 +37,6 @@ def listen():
 
 with open("ml-data/intents.json") as file:
     data = json.load(file)
-#print(data)
 try:
     with open("ml-data/data.pickle", "rb") as f:
         words,labels,training,output = pickle.load(f)
@@ -115,18 +115,20 @@ while 1:
             sound = AudioSegment.from_mp3('library/sounds/wake_up_noise.mp3')
             play(sound)
             print("identifying face....")
-            face_rec.face_rec()
-            username = face_rec.global_name
+            #face_rec.face_rec()
+            #username = face_rec.global_name
             greeting = time.greeting
-            print(greeting(time.now.hour), f" {username}, what can I do for you?")
-            say(greeting(time.now.hour) + f" {username}, what can I do for you?")
+            #print(greeting(time.now.hour), f"{username}, what can I do for you?")
+            #print(greeting(time.now.hour), "username, what can I do for you?")
+            #say(greeting(time.now.hour) + "koala what can I do for you?")
+            say("what can i do for you")
+            #print("lmfao")
             while True:
-
                 with sr.Microphone() as source:
                     #inp = input("You: ")
                     #if inp.lower() == "quit":
                     #    break
-  
+
                     inp_listen = r.listen(source)
                     inp = r.recognize_google(inp_listen)
                     results = model.predict([bag_of_words(inp,words)])
@@ -193,8 +195,6 @@ while 1:
                     else:
                         print(resp)
                         say(resp)
-                        #print("Error, something went wrong!")
-                        #say("Error, something went wrong!")
                     say("Anything else?")
                     print("Anything else?")
         except sr.UnknownValueError as err:
