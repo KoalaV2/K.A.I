@@ -23,17 +23,22 @@ import speech_recognition as sr
 import library.time
 from pydub import AudioSegment
 from pydub.playback import play
-trigger = "hello"
+trigger = "hey there"
 r = sr.Recognizer()
 
 def listen():
         with sr.Microphone() as source:
-                r.adjust_for_ambient_noise(source)
+                r.adjust_for_ambient_noise(source, duration=0.5)
                 audio = r.listen(source)
         try:
+                print(r.recognize_google(audio, show_all=True))
                 return r.recognize_google(audio)
         except sr.UnknownValueError:
             return ""
+def adjust():
+    with sr.Microphone() as source:
+        r.adjust_for_ambient_noise(source)
+    return ""
 
 with open("ml-data/intents.json") as file:
     data = json.load(file)
@@ -110,20 +115,20 @@ def bag_of_words(s,words):
 print("Beggining to listen....")
 
 while 1:
-    if input() == trigger:
+    if listen() == trigger:
         try:
             sound = AudioSegment.from_mp3('library/sounds/wake_up_noise.mp3')
-            play(sound)
+            #play(sound)
             print("identifying face....")
-            #face_rec.face_rec()
-            #username = face_rec.global_name
+            face_rec.face_rec()
+            username = face_rec.global_name
             greeting = time.greeting
-            #print(greeting(time.now.hour), f"{username}, what can I do for you?")
-            #print(greeting(time.now.hour), "username, what can I do for you?")
-            #say(greeting(time.now.hour) + "koala what can I do for you?")
-            say("what can i do for you")
+            print(greeting(time.now.hour), f"{username}, what can I do for you?")
+
+            say(greeting(time.now.hour) + f"{username} what can I do for you?")
             #print("lmfao")
             while True:
+                adjust()
                 with sr.Microphone() as source:
                     #inp = input("You: ")
                     #if inp.lower() == "quit":
@@ -131,6 +136,7 @@ while 1:
 
                     inp_listen = r.listen(source)
                     inp = r.recognize_google(inp_listen)
+                    print(inp)
                     results = model.predict([bag_of_words(inp,words)])
                     results_index = numpy.argmax(results)
                     tag = labels[results_index]

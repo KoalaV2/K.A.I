@@ -13,20 +13,27 @@ if 'faces' not in config:
     exit(1)
 
 global_name = "Unknown"
+
 def face_rec():
     global global_name
-    video_capture = cv2.VideoCapture(2)
+    video_capture = cv2.VideoCapture(4)
     ret, frame = video_capture.read()
-    rgb_frame = frame[:, :, ::-1]
 
+    if not ret:
+        print("failed to grab frame")
+        exit(1)
+
+    rgb_frame = frame[:, :, ::-1]
 
     known_encodings = []
     known_names = []
 
     for name in config['faces']:
         file = config['faces'][name]
+        print(file)
         image = face_recognition.load_image_file(file)
         encoding = face_recognition.face_encodings(image)[0]
+        print(encoding)
 
         known_encodings.append(encoding)
         known_names.append(name)
@@ -47,5 +54,4 @@ def face_rec():
             global_name = known_names[best_match_index]
 
     #Removing the image file as it's not needed anymore until when it is started again
-    #os.remove("filename.jpg")
-
+    #os.remove("filename.jpg"
