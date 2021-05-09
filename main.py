@@ -23,7 +23,7 @@ import speech_recognition as sr
 import library.time
 from pydub import AudioSegment
 from pydub.playback import play
-trigger = "hey there"
+trigger = "hey assistant"
 r = sr.Recognizer()
 
 def listen():
@@ -117,22 +117,18 @@ print("Beggining to listen....")
 while 1:
     if listen() == trigger:
         try:
-            sound = AudioSegment.from_mp3('library/sounds/wake_up_noise.mp3')
+            #sound = AudioSegment.from_mp3('library/sounds/wake_up_noise.mp3')
             #play(sound)
             print("identifying face....")
             face_rec.face_rec()
             username = face_rec.global_name
             greeting = time.greeting
             print(greeting(time.now.hour), f"{username}, what can I do for you?")
-
             say(greeting(time.now.hour) + f"{username} what can I do for you?")
             #print("lmfao")
             while True:
                 adjust()
                 with sr.Microphone() as source:
-                    #inp = input("You: ")
-                    #if inp.lower() == "quit":
-                    #    break
 
                     inp_listen = r.listen(source)
                     inp = r.recognize_google(inp_listen)
@@ -168,10 +164,6 @@ while 1:
                         print("The following has been written to the file: \n \n" + text)
                         say("The following has been written to the file" + text)
 
-                    elif inp in ('goodnight', "good night", "night"):
-                        say("Goodnight " + "Going to sleep now..")
-                        subprocess.call('systemctl suspend', shell=True)
-
                     elif inp.startswith('download') and inp.endswith('from YouTube'):
                         words2 = inp.split()
                         title = words2[1:][:-2]
@@ -194,8 +186,8 @@ while 1:
                     elif inp in ('quit', 'no', 'no quit the program', 'no thank you', 'goodbye', 'bye'):
                         print("Returning to standby... Have a great day!")
                         say("Returning to standby... Have a great day!")
-                        shutdown_sound = AudioSegment.from_mp3('library/sounds/shutdown.mp3')
-                        play(shutdown_sound)
+                        #shutdown_sound = AudioSegment.from_mp3('library/sounds/shutdown.mp3')
+                        #play(shutdown_sound)
                         r.adjust_for_ambient_noise(source)
                         break
                     else:
