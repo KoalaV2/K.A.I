@@ -2,11 +2,8 @@
 import nltk
 from nltk.stem.lancaster import LancasterStemmer
 stemmer = LancasterStemmer()
-import numpy
-import tensorflow
 import random
 import json
-import tflearn
 import pickle
 from gtts import gTTS
 from pydub.playback import play
@@ -16,6 +13,9 @@ from library import time
 import library.youtube_dl as youtube
 from library import wikipedia_summary
 from library import weather
+from library import train
+from library.train import bag_of_words
+from library.light import setlightcolor
 import library.face as face_rec
 import os
 import subprocess
@@ -40,79 +40,7 @@ def adjust():
         r.adjust_for_ambient_noise(source)
     return ""
 
-with open("ml-data/intents.json") as file:
-    data = json.load(file)
-try:
-    with open("ml-data/data.pickle", "rb") as f:
-        words,labels,training,output = pickle.load(f)
-except:
-    words = []
-    labels = []
-    docs_x = []
-    docs_y = []
-    for intent in data["intents"]:
-        for pattern in intent["patterns"]:
-            wrds = nltk.word_tokenize(pattern)
-            words.extend(wrds)
-            docs_x.append(wrds)
-            docs_y.append(intent["tag"])
-
-            if intent["tag"] not in labels:
-                labels.append(intent["tag"])
-    words = [stemmer.stem(w.lower()) for w in words if w != "?"]
-    words = sorted(list(set(words)))
-    labels = sorted(labels)
-
-    training = []
-    output = []
-
-    out_empty = [0 for _ in range(len(labels))]
-    for x, doc in enumerate(docs_x):
-        bag = []
-
-        wrds = [stemmer.stem(w.lower()) for w  in doc]
-
-        for w in words:
-            if w in wrds:
-                bag.append(1)
-            else:
-                bag.append(0)
-        output_row = out_empty[:]
-        output_row[labels.index(docs_y[x])] = 1
-
-        training.append(bag)
-        output.append(output_row)
-    training = numpy.array(training)
-    output = numpy.array(output)
-    with open("ml-data/data.pickle", "wb") as f:
-        pickle.dump((words,labels,training,output),f)
-
-net = tflearn.input_data(shape=[None, len(training[0])]) # input layer
-net = tflearn.fully_connected(net, 8) # 8 neurons
-net = tflearn.fully_connected(net, 8)
-net = tflearn.fully_connected(net, len(output[0]), activation="softmax") #output layer
-net = tflearn.regression(net)
-
-model = tflearn.DNN(net)
-try:
-    model.load("ml-data/model.tflearn")
-except:
-    model = tflearn.DNN(net)
-    model.fit(training, output, n_epoch=1000, batch_size=8,show_metric=True)
-    model.save("ml-data/model.tflearn")
-
-def bag_of_words(s,words):
-    bag = [0 for _ in range(len(words))]
-
-    s_words = nltk.word_tokenize(s)
-    s_words = [stemmer.stem(word.lower()) for word in s_words]
-
-    for se in s_words:
-        for i,w in enumerate(words):
-            if w == se:
-                bag[i] = 1
-    return numpy.array(bag)
-print("Beggining to listen....")
+print("Beginning to listen....")
 
 while 1:
     if listen() == trigger:
@@ -125,21 +53,22 @@ while 1:
             greeting = time.greeting
             print(greeting(time.now.hour), f"{username}, what can I do for you?")
             say(greeting(time.now.hour) + f"{username} what can I do for you?")
-            #print("lmfao")
             while True:
                 adjust()
+                print("Speak now..")
                 with sr.Microphone() as source:
-
                     inp_listen = r.listen(source)
                     inp = r.recognize_google(inp_listen)
                     print(inp)
-                    results = model.predict([bag_of_words(inp,words)])
-                    results_index = numpy.argmax(results)
-                    tag = labels[results_index]
-                    for tg in data["intents"]:
-                        if tg['tag'] == tag:
-                            responses = tg['responses']
-                    resp = random.choice(responses)
+                    #results = train.trainmodel(inp)
+                    #results_index = train.trainmodel(inp)
+                    #tag = labels[results_index]
+                    #for tg in data["intents"]:
+                    #    if tg['tag'] == tag:
+                    #        responses = tg['responses']
+                    #resp = random.choice(responses)
+                    resp = "lmao"
+                    print(resp)
                     print("You said: " + inp + "\n")
                     if inp in ('open calculator', 'calculator', 'calc'):
                         print("Opening calculator now!")
@@ -182,6 +111,12 @@ while 1:
                         words2 = inp.split()
                         city_name = words2[4:]
                         weather.weather(city_name)
+                    elif inp.startswith('set light'):
+                        color2  = inp.split()
+                        color = str(color2[-1])
+                        print(f"Setting light to {color}")
+                        setlightcolor(color)
+                        say("Setting light to"+ color)
 
                     elif inp in ('quit', 'no', 'no quit the program', 'no thank you', 'goodbye', 'bye'):
                         print("Returning to standby... Have a great day!")

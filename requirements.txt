@@ -1,6 +1,6 @@
 nltk
 numpy
-tensorflow==1.15.3
+tensorflow
 tflearn
 gtts
 pydub
@@ -10,3 +10,4 @@ cmake
 opencv-python
 wikipedia
 pyaudio
+pygame

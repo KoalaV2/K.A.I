@@ -16,7 +16,7 @@ global_name = "Unknown"
 
 def face_rec():
     global global_name
-    video_capture = cv2.VideoCapture(4)
+    video_capture = cv2.VideoCapture(0)
     ret, frame = video_capture.read()
 
     if not ret:

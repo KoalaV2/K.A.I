@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/theo/Programming/python/K.A.I/library/ml-data/model.tflearn"
+all_model_checkpoint_paths: "/home/theo/Programming/python/K.A.I/library/ml-data/model.tflearn"

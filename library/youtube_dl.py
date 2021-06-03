@@ -1,5 +1,5 @@
 from library.utils import say
-import speech_recognition as sr 
+import speech_recognition as sr
 import subprocess
 import webbrowser
 import cv2
@@ -33,7 +33,5 @@ def youtube(title):
                   cv2.destroyAllWindows()
                   break
               cv2.imshow('frame',frame)
-
-
         else:
             pass
