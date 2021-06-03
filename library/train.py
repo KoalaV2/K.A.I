@@ -83,6 +83,5 @@ def trainmodel(inp):
         model = tflearn.DNN(net)
         model.fit(training, output, n_epoch=1000, batch_size=8,show_metric=True)
         model.save("library/ml-data/model.tflearn")
-
     results = model.predict([bag_of_words(inp,words)])
-    results_index = numpy.argmax(results)
+    return [results,labels,data]

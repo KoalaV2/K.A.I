@@ -2,6 +2,7 @@
 import nltk
 from nltk.stem.lancaster import LancasterStemmer
 stemmer = LancasterStemmer()
+import numpy
 import random
 import json
 import pickle
@@ -59,16 +60,16 @@ while 1:
                 with sr.Microphone() as source:
                     inp_listen = r.listen(source)
                     inp = r.recognize_google(inp_listen)
-                    print(inp)
-                    #results = train.trainmodel(inp)
-                    #results_index = train.trainmodel(inp)
-                    #tag = labels[results_index]
-                    #for tg in data["intents"]:
-                    #    if tg['tag'] == tag:
-                    #        responses = tg['responses']
-                    #resp = random.choice(responses)
-                    resp = "lmao"
-                    print(resp)
+                    trained_model = train.trainmodel(inp)
+                    results = trained_model[0]
+                    labels = trained_model[1]
+                    data = trained_model[2]
+                    results_index = numpy.argmax(results)
+                    tag = labels[results_index]
+                    for tg in data["intents"]:
+                        if tg['tag'] == tag:
+                            responses = tg['responses']
+                    resp = random.choice(responses)
                     print("You said: " + inp + "\n")
                     if inp in ('open calculator', 'calculator', 'calc'):
                         print("Opening calculator now!")
@@ -111,12 +112,12 @@ while 1:
                         words2 = inp.split()
                         city_name = words2[4:]
                         weather.weather(city_name)
-                    elif inp.startswith('set light'):
+                    elif inp in ('set light','set light color','turn light to'):
                         color2  = inp.split()
                         color = str(color2[-1])
                         print(f"Setting light to {color}")
                         setlightcolor(color)
-                        say("Setting light to"+ color)
+                        say("Setting light to" + color)
 
                     elif inp in ('quit', 'no', 'no quit the program', 'no thank you', 'goodbye', 'bye'):
                         print("Returning to standby... Have a great day!")
