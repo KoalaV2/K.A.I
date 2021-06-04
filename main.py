@@ -27,6 +27,9 @@ from pydub.playback import play
 trigger = "hey assistant"
 r = sr.Recognizer()
 
+with open("settings.json") as settings_file:
+    main_settings = json.load(settings_file)
+
 with open("library/ml-data/intents.json") as file:
     data = json.load(file)
 try:
@@ -121,9 +124,13 @@ while 1:
         try:
             #sound = AudioSegment.from_mp3('library/sounds/wake_up_noise.mp3')
             #play(sound)
-            print("identifying face....")
-            face_rec.face_rec()
-            username = face_rec.global_name
+            if main_settings["face_rec_toggle"] == True:
+                print("identifying face....")
+                face_rec.face_rec()
+                username = face_rec.global_name
+            else:
+                print("Face recognition disabled, skipping...")
+                username = "User"
             greeting = time.greeting
             print(greeting(time.now.hour), f"{username}, what can I do for you?")
             say(greeting(time.now.hour) + f"{username} what can I do for you?")
@@ -175,11 +182,13 @@ while 1:
                         print("This is what I can do, I can show the current time, write to a text file, download a youtube video, search a wikipedia summary and be a calculator")
                         say("This is what I can do, I can show the current time, write to a text file, download a youtube video, search a wikipedia summary and be a calculator")
 
-                    elif inp.startswith('look up weather in'):
+                    elif inp.find('weather') != -1:
+                        print(inp.find('weather'))
                         words2 = inp.split()
-                        city_name = words2[4:]
+                        city_name = words2[-1]
                         weather.weather(city_name)
-                    elif inp.find('lights'):
+
+                    elif inp.find('lights') != -1:
                         color2  = inp.split()
                         color = str(color2[-1])
                         print(f"Setting light to {color}")
@@ -191,7 +200,6 @@ while 1:
                         say("Returning to standby... Have a great day!")
                         #shutdown_sound = AudioSegment.from_mp3('library/sounds/shutdown.mp3')
                         #play(shutdown_sound)
-                        r.adjust_for_ambient_noise(source)
                         break
                     else:
                         print(resp)

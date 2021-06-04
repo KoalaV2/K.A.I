@@ -9,7 +9,8 @@ __pycache__/
 *$py.class
 
 library/images/*
-library/images/*
+myfile.wav
+tts-temp.mp3
 # C extensions
 *.so
 
