@@ -1,8 +1,8 @@
-# K.A.I aka Koalas artificial intelligence
+ K.A.I aka Koalas artificial intelligence
 
 This is a project of mine to further improve my daily life automation and programming skills.
 
-:warning: **Warning, only works in Linux, not Windows** :warning: 
+:warning: **Warning, only works in Linux, not Windows** :warning:
 
 *Kinda works on Windows, I'm working on it okay?*
 
@@ -15,10 +15,9 @@ K.A.I is a custom made assistant which is fully programmed and built by myself a
 2. TUI / GUI
 3. Better security / permission control
 4. Google search
-5. Light control 
-6. Chat application
-7. Website scraper
-8. Wikipedia article to PDF converter
+5. Chat application
+6. Website scraper
+7. Wikipedia article to PDF converter
 
 ## Finished features
 
@@ -32,10 +31,12 @@ K.A.I is a custom made assistant which is fully programmed and built by myself a
 7. Better TTS
 8. Wikipedia summary downloader
 9. Face Recognition
-## Dependencies 
+10. Light controll
+
+## Dependencies
 
 1. gTTS
-2. wikipedia 
+2. wikipedia
 2. SpeechRecognition
 3. PyAudio
 4. youtube-dl

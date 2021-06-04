@@ -17,6 +17,7 @@ import library.youtube_dl as youtube
 from library import wikipedia_summary
 from library import weather
 from library import light
+from library import google_query
 import library.face as face_rec
 import os
 import subprocess
@@ -189,6 +190,15 @@ while 1:
                         color = str(color2[-1])
                         light.setlightcolor(color)
                         say("Set the light to" + color)
+
+                    elif inp.find('Google') != -1:
+                        google_query2 = inp.split()
+                        google_query_str = str(google_query2[-1])
+                        response = google_query.google_search(google_query_str)
+                        title = response[0]['title']
+                        text = response[0]['text']
+                        say(title)
+                        say(text)
 
                     elif inp in ('quit', 'no', 'no quit the program', 'no thank you', 'goodbye', 'bye'):
                         say("Returning to standby... Have a great day!")
