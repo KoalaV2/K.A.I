@@ -24,11 +24,12 @@ import speech_recognition as sr
 import library.time
 from pydub import AudioSegment
 from pydub.playback import play
-trigger = "hey assistant"
 r = sr.Recognizer()
 
 with open("settings.json") as settings_file:
     main_settings = json.load(settings_file)
+
+trigger = main_settings['trigger']
 
 with open("library/ml-data/intents.json") as file:
     data = json.load(file)
@@ -178,7 +179,7 @@ while 1:
                         summary = words2[3:][:-2]
                         wikipedia_summary.wikipedia_summary(summary)
 
-                    elif inp in ('help', 'show inps', 'show help'):
+                    elif inp.find('help') != -1:
                         print("This is what I can do, I can show the current time, write to a text file, download a youtube video, search a wikipedia summary and be a calculator")
                         say("This is what I can do, I can show the current time, write to a text file, download a youtube video, search a wikipedia summary and be a calculator")
 

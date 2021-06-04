@@ -1,3 +1,4 @@
 {
-    "face_rec_toggle": false
+    "face_rec_toggle": false,
+    "trigger": "hey assistant"
 }
