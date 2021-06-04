@@ -10,4 +10,5 @@ def say(string):
     sound.export("myfile.wav", format="wav")
     sound = AudioSegment.from_file('myfile.wav')
     sound = sound.set_frame_rate(16000)
+    print(string)
     play(sound)

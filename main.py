@@ -133,8 +133,7 @@ while 1:
                 print("Face recognition disabled, skipping...")
                 username = "User"
             greeting = time.greeting
-            print(greeting(time.now.hour), f"{username}, what can I do for you?")
-            say(greeting(time.now.hour) + f"{username} what can I do for you?")
+            say(greeting(time.now.hour) + f" {username}, what can I do for you?")
             while True:
                 adjust()
                 print("Speak now..")
@@ -150,24 +149,21 @@ while 1:
                     resp = random.choice(responses)
                     print("You said: " + inp + "\n")
                     if inp.find("calculator") != -1:
-                        print("Opening calculator now!")
                         say("Opening calculator now!")
                         calculator.calculator()
 
-                    elif inp in ('SSH info', 'SSH information'):
+                    elif inp.find('SSH') != -1:
                         subprocess.call("library/ssh.sh")
 
                     elif inp in ('text', 'write to a text file', 'Journal','write to text file'):
-                        print("What do you want to write to the file? \n")
-                        say("What do you want to write to the file?")
+                        say("What do you want to write to the file? \n")
                         text_listen = r.listen(source)
                         text = r.recognize_google(text_listen)
 
                         text_file = open(f'{username}_text_file.txt', 'w')
                         text_file.write(text)
 
-                        print("The following has been written to the file: \n \n" + text)
-                        say("The following has been written to the file" + text)
+                        say("The following has been written to the file: \n \n" + text)
 
                     elif inp.startswith('download') and inp.endswith('from YouTube'):
                         words2 = inp.split()
@@ -180,7 +176,6 @@ while 1:
                         wikipedia_summary.wikipedia_summary(summary)
 
                     elif inp.find('help') != -1:
-                        print("This is what I can do, I can show the current time, write to a text file, download a youtube video, search a wikipedia summary and be a calculator")
                         say("This is what I can do, I can show the current time, write to a text file, download a youtube video, search a wikipedia summary and be a calculator")
 
                     elif inp.find('weather') != -1:
@@ -192,20 +187,16 @@ while 1:
                     elif inp.find('lights') != -1:
                         color2  = inp.split()
                         color = str(color2[-1])
-                        print(f"Setting light to {color}")
                         light.setlightcolor(color)
-                        say("Setting light to" + color)
+                        say("Set the light to" + color)
 
                     elif inp in ('quit', 'no', 'no quit the program', 'no thank you', 'goodbye', 'bye'):
-                        print("Returning to standby... Have a great day!")
                         say("Returning to standby... Have a great day!")
                         #shutdown_sound = AudioSegment.from_mp3('library/sounds/shutdown.mp3')
                         #play(shutdown_sound)
                         break
                     else:
-                        print(resp)
                         say(resp)
                     say("Anything else?")
-                    print("Anything else?")
         except sr.UnknownValueError as err:
             print("Encountered an error: ", err)
