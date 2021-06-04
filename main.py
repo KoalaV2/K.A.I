@@ -148,7 +148,7 @@ while 1:
                             responses = tg['responses']
                     resp = random.choice(responses)
                     print("You said: " + inp + "\n")
-                    if inp in ('open calculator', 'calculator', 'calc'):
+                    if inp.find("calculator") != -1:
                         print("Opening calculator now!")
                         say("Opening calculator now!")
                         calculator.calculator()
