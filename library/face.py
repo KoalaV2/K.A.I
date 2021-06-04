@@ -37,6 +37,7 @@ def face_rec():
 
         known_encodings.append(encoding)
         known_names.append(name)
+        print(known_names)
         #print("%s: %s" % (name, config['faces'][name]))
 
     #unknown_image = face_recognition.load_image_file("filename.jpg")
@@ -52,6 +53,7 @@ def face_rec():
         best_match_index = np.argmin(face_distances)
         if matches[best_match_index]:
             global_name = known_names[best_match_index]
+            print(global_name)
 
     #Removing the image file as it's not needed anymore until when it is started again
     #os.remove("filename.jpg"

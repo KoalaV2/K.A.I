@@ -16,6 +16,7 @@ from library import time
 import library.youtube_dl as youtube
 from library import wikipedia_summary
 from library import weather
+from library import light
 import library.face as face_rec
 import os
 import subprocess
@@ -145,9 +146,6 @@ while 1:
                         say("Opening calculator now!")
                         calculator.calculator()
 
-                    elif inp in ('show current time','local time', 'current time', 'time'):
-                        print(time.now.hour)
-
                     elif inp in ('SSH info', 'SSH information'):
                         subprocess.call("library/ssh.sh")
 
@@ -181,11 +179,11 @@ while 1:
                         words2 = inp.split()
                         city_name = words2[4:]
                         weather.weather(city_name)
-                    elif inp.startswith in ('set the light to', 'set light','set light color','turn light to'):
+                    elif inp.find('lights'):
                         color2  = inp.split()
                         color = str(color2[-1])
                         print(f"Setting light to {color}")
-                        setlightcolor(color)
+                        light.setlightcolor(color)
                         say("Setting light to" + color)
 
                     elif inp in ('quit', 'no', 'no quit the program', 'no thank you', 'goodbye', 'bye'):
