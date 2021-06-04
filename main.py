@@ -6,6 +6,8 @@ import numpy
 import random
 import json
 import pickle
+import tensorflow
+import tflearn
 from gtts import gTTS
 from pydub.playback import play
 from library.utils import say
@@ -14,9 +16,6 @@ from library import time
 import library.youtube_dl as youtube
 from library import wikipedia_summary
 from library import weather
-from library import train
-from library.train import bag_of_words
-from library.light import setlightcolor
 import library.face as face_rec
 import os
 import subprocess
@@ -26,6 +25,79 @@ from pydub import AudioSegment
 from pydub.playback import play
 trigger = "hey assistant"
 r = sr.Recognizer()
+
+with open("library/ml-data/intents.json") as file:
+    data = json.load(file)
+try:
+    with open("library/ml-data/data.pickle", "rb") as f:
+        words,labels,training,output = pickle.load(f)
+except:
+    words = []
+    labels = []
+    docs_x = []
+    docs_y = []
+    for intent in data["intents"]:
+        for pattern in intent["patterns"]:
+            wrds = nltk.word_tokenize(pattern)
+            words.extend(wrds)
+            docs_x.append(wrds)
+            docs_y.append(intent["tag"])
+
+            if intent["tag"] not in labels:
+                labels.append(intent["tag"])
+    words = [stemmer.stem(w.lower()) for w in words if w != "?"]
+    words = sorted(list(set(words)))
+    labels = sorted(labels)
+
+    training = []
+    output = []
+
+    out_empty = [0 for _ in range(len(labels))]
+    for x, doc in enumerate(docs_x):
+        bag = []
+
+        wrds = [stemmer.stem(w.lower()) for w  in doc]
+
+        for w in words:
+            if w in wrds:
+                bag.append(1)
+            else:
+                bag.append(0)
+        output_row = out_empty[:]
+        output_row[labels.index(docs_y[x])] = 1
+
+        training.append(bag)
+        output.append(output_row)
+    training = numpy.array(training)
+    output = numpy.array(output)
+    with open("library/ml-data/data.pickle", "wb") as f:
+        pickle.dump((words,labels,training,output),f)
+
+net = tflearn.input_data(shape=[None, len(training[0])]) # input layer
+net = tflearn.fully_connected(net, 8) # 8 neurons
+net = tflearn.fully_connected(net, 8)
+net = tflearn.fully_connected(net, len(output[0]), activation="softmax") #output layer
+net = tflearn.regression(net)
+
+model = tflearn.DNN(net)
+try:
+    model.load("library/ml-data/model.tflearn")
+except:
+    model = tflearn.DNN(net)
+    model.fit(training, output, n_epoch=1000, batch_size=8,show_metric=True)
+    model.save("library/ml-data/model.tflearn")
+
+def bag_of_words(s,words):
+    bag = [0 for _ in range(len(words))]
+
+    s_words = nltk.word_tokenize(s)
+    s_words = [stemmer.stem(word.lower()) for word in s_words]
+
+    for se in s_words:
+        for i,w in enumerate(words):
+            if w == se:
+                bag[i] = 1
+    return numpy.array(bag)
 
 def listen():
         with sr.Microphone() as source:
@@ -60,10 +132,7 @@ while 1:
                 with sr.Microphone() as source:
                     inp_listen = r.listen(source)
                     inp = r.recognize_google(inp_listen)
-                    trained_model = train.trainmodel(inp)
-                    results = trained_model[0]
-                    labels = trained_model[1]
-                    data = trained_model[2]
+                    results = model.predict([bag_of_words(inp,words)])
                     results_index = numpy.argmax(results)
                     tag = labels[results_index]
                     for tg in data["intents"]:
@@ -112,7 +181,7 @@ while 1:
                         words2 = inp.split()
                         city_name = words2[4:]
                         weather.weather(city_name)
-                    elif inp in ('set light','set light color','turn light to'):
+                    elif inp.startswith in ('set the light to', 'set light','set light color','turn light to'):
                         color2  = inp.split()
                         color = str(color2[-1])
                         print(f"Setting light to {color}")
