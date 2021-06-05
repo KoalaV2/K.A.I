@@ -194,9 +194,6 @@ while 1:
 
                     elif inp.find('Google') != -1:
                         output = re.search('((?<=search\sfor\s)|(what)|(where)|(who)|(when)|(why)|(which)|(whose)|(how)|(is)|(can))(\w*.)*',inp).group(0)
-                        #google_query2 = inp.split()
-                        #google_query_str = str(google_query2[-1])
-                        #response = google_query.google_search(google_query_str)
                         print(f"Doing a google search for {output}")
                         response = google_query.google_search(output)
                         title = response[0]['title']
