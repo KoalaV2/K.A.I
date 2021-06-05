@@ -11,3 +11,5 @@ opencv-python
 wikipedia
 pyaudio
 pygame
+pandas
+requests_html

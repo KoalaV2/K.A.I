@@ -25,6 +25,7 @@ import speech_recognition as sr
 import library.time
 from pydub import AudioSegment
 from pydub.playback import play
+import re
 r = sr.Recognizer()
 
 with open("settings.json") as settings_file:
@@ -192,9 +193,12 @@ while 1:
                         say("Set the light to" + color)
 
                     elif inp.find('Google') != -1:
-                        google_query2 = inp.split()
-                        google_query_str = str(google_query2[-1])
-                        response = google_query.google_search(google_query_str)
+                        output = re.search('((?<=search\sfor\s)|(what)|(where)|(who)|(when)|(why)|(which)|(whose)|(how)|(is)|(can))(\w*.)*',inp).group(0)
+                        #google_query2 = inp.split()
+                        #google_query_str = str(google_query2[-1])
+                        #response = google_query.google_search(google_query_str)
+                        print(f"Doing a google search for {output}")
+                        response = google_query.google_search(output)
                         title = response[0]['title']
                         text = response[0]['text']
                         say(title)
