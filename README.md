@@ -16,6 +16,7 @@ K.A.I is a custom made assistant which is fully programmed and built by myself a
 3. Better security / permission control
 4. Website scraper
 5. Wikipedia article to PDF converter
+6. Spotify control
 
 ## Finished features
 
