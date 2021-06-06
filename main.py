@@ -143,75 +143,75 @@ while 1:
             while True:
                 #adjust()
                 print("Speak now..")
-                with sr.Microphone() as source:
-                    inp_listen = r.listen(source)
-                    inp = r.recognize_google(inp_listen)
-                    results = model.predict([bag_of_words(inp,words)])
-                    results_index = numpy.argmax(results)
-                    tag = labels[results_index]
-                    for tg in data["intents"]:
-                        if tg['tag'] == tag:
-                            responses = tg['responses']
-                    resp = random.choice(responses)
-                    print("You said: " + inp + "\n")
-                    if inp.find("calculator") != -1:
-                        say("Opening calculator now!")
-                        calculator.calculator()
+                #inp_listen = r.listen(source)
+                #inp = r.recognize_google(inp_listen)
+                inp = listen()
+                results = model.predict([bag_of_words(inp,words)])
+                results_index = numpy.argmax(results)
+                tag = labels[results_index]
+                for tg in data["intents"]:
+                    if tg['tag'] == tag:
+                        responses = tg['responses']
+                resp = random.choice(responses)
+                print("You said: " + inp + "\n")
+                if inp.find("calculator") != -1:
+                    say("Opening calculator now!")
+                    calculator.calculator()
 
-                    elif inp.find('SSH') != -1:
-                        subprocess.call("library/ssh.sh")
+                elif inp.find('SSH') != -1:
+                    subprocess.call("library/ssh.sh")
 
-                    elif inp in ('text', 'write to a text file', 'Journal','write to text file'):
-                        say("What do you want to write to the file? \n")
-                        text_listen = r.listen(source)
-                        text = r.recognize_google(text_listen)
+                elif inp in ('text', 'write to a text file', 'Journal','write to text file'):
+                    say("What do you want to write to the file? \n")
+                    text_listen = r.listen(source)
+                    text = r.recognize_google(text_listen)
 
-                        text_file = open(f'{username}_text_file.txt', 'w')
-                        text_file.write(text)
+                    text_file = open(f'{username}_text_file.txt', 'w')
+                    text_file.write(text)
 
-                        say("The following has been written to the file: \n \n" + text)
+                    say("The following has been written to the file: \n \n" + text)
 
-                    elif inp.startswith('download') and inp.endswith('from YouTube'):
-                        words2 = inp.split()
-                        title = words2[1:][:-2]
-                        youtube.youtube(title)
+                elif inp.startswith('download') and inp.endswith('from YouTube'):
+                    words2 = inp.split()
+                    title = words2[1:][:-2]
+                    youtube.youtube(title)
 
-                    elif inp.startswith('find summary about') and inp.endswith('on Wikipedia'):
-                        words2 = inp.split()
-                        summary = words2[3:][:-2]
-                        wikipedia_summary.wikipedia_summary(summary)
+                elif inp.startswith('find summary about') and inp.endswith('on Wikipedia'):
+                    words2 = inp.split()
+                    summary = words2[3:][:-2]
+                    wikipedia_summary.wikipedia_summary(summary)
 
-                    elif inp.find('help') != -1:
-                        say("This is what I can do, I can show the current time, write to a text file, download a youtube video, search a wikipedia summary and be a calculator")
+                elif inp.find('help') != -1:
+                    say("This is what I can do, I can show the current time, write to a text file, download a youtube video, search a wikipedia summary and be a calculator")
 
-                    elif inp.find('weather') != -1:
-                        print(inp.find('weather'))
-                        words2 = inp.split()
-                        city_name = words2[-1]
-                        weather.weather(city_name)
+                elif inp.find('weather') != -1:
+                    print(inp.find('weather'))
+                    words2 = inp.split()
+                    city_name = words2[-1]
+                    weather.weather(city_name)
 
-                    elif inp.find('lights') != -1:
-                        color2  = inp.split()
-                        color = str(color2[-1])
-                        light.setlightcolor(color)
-                        say("Set the light to" + color)
+                elif inp.find('lights') != -1:
+                    color2  = inp.split()
+                    color = str(color2[-1])
+                    light.setlightcolor(color)
+                    say("Set the light to" + color)
 
-                    elif inp.find('Google') != -1:
-                        output = re.search('((?<=search\sfor\s)|(what)|(where)|(who)|(when)|(why)|(which)|(whose)|(how)|(is)|(can))(\w*.)*',inp).group(0)
-                        print(f"Doing a google search for {output}")
-                        response = google_query.google_search(output)
-                        title = response[0]['title']
-                        text = response[0]['text']
-                        say(title)
-                        say(text)
+                elif inp.find('Google') != -1:
+                    output = re.search('((?<=search\sfor\s)|(what)|(where)|(who)|(when)|(why)|(which)|(whose)|(how)|(is)|(can))(\w*.)*',inp).group(0)
+                    print(f"Doing a google search for {output}")
+                    response = google_query.google_search(output)
+                    title = response[0]['title']
+                    text = response[0]['text']
+                    say(title)
+                    say(text)
 
-                    elif inp in ('quit', 'no', 'no quit the program', 'no thank you', 'goodbye', 'bye'):
-                        say("Returning to standby... Have a great day!")
-                        #shutdown_sound = AudioSegment.from_mp3('library/sounds/shutdown.mp3')
-                        #play(shutdown_sound)
-                        break
-                    else:
-                        say(resp)
-                    say("Anything else?")
+                elif inp in ('quit', 'no', 'no quit the program', 'no thank you', 'goodbye', 'bye'):
+                    say("Returning to standby... Have a great day!")
+                    #shutdown_sound = AudioSegment.from_mp3('library/sounds/shutdown.mp3')
+                    #play(shutdown_sound)
+                    break
+                else:
+                    say(resp)
+                say("Anything else?")
         except sr.UnknownValueError as err:
             print("Encountered an error: ", err)
