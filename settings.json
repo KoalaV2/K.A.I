@@ -1,4 +1,5 @@
 {
     "face_rec_toggle": false,
-    "trigger": "hey assistant"
+    "trigger": "hey assistant",
+    "debug_mode": true
 }
