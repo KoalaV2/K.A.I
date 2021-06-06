@@ -31,8 +31,7 @@ def weather(city_name):
 
 
         weather_description = z[0]["description"]
-        print("It is " + str(current_temperature) + " Celsius in " + ' '.join(city_name) + " with " + str(weather_description))
-        say("It is " + str(current_temperature) + " Celsius in " + ' '.join(city_name) + " with " + str(weather_description))
+        say("It is " + str(current_temperature) + " Celsius in " + city_name + " with " + str(weather_description))
 
     else:
         print(" City Not Found ")

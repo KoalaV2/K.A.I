@@ -121,7 +121,7 @@ def adjust():
     return ""
 
 print("Beginning to listen....")
-
+adjust()
 while 1:
     if listen() == trigger:
         try:
@@ -137,7 +137,7 @@ while 1:
             greeting = time.greeting
             say(greeting(time.now.hour) + f" {username}, what can I do for you?")
             while True:
-                adjust()
+                #adjust()
                 print("Speak now..")
                 with sr.Microphone() as source:
                     inp_listen = r.listen(source)

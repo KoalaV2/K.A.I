@@ -14,10 +14,9 @@ K.A.I is a custom made assistant which is fully programmed and built by myself a
 1. Face recognition using IR camera
 2. TUI / GUI
 3. Better security / permission control
-4. Google search
-5. Chat application
-6. Website scraper
-7. Wikipedia article to PDF converter
+4. Website scraper
+5. Wikipedia article to PDF converter
+6. Spotify control
 
 ## Finished features
 
@@ -32,6 +31,7 @@ K.A.I is a custom made assistant which is fully programmed and built by myself a
 8. Wikipedia summary downloader
 9. Face Recognition
 10. Light controll
+11. Google search
 
 ## Dependencies
 
