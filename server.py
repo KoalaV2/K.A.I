@@ -152,7 +152,7 @@ def main():
         color2  = inp.split()
         color = str(color2[-1])
         light.setlightcolor(color)
-        return("Set the light to " + color)
+        return("Setting the light to " + color + "...")
 
     elif inp.find('google') != -1:
         inp.encode("utf-8")
@@ -163,9 +163,6 @@ def main():
         text = response[0]['text']
         stuff = title + '\n' + text
         return(stuff.encode("utf-8"))
-        #return(title.encode("utf-8"),text.encode("utf-8"))
-        #say(title)
-        #say(text)
 
 
     else:
