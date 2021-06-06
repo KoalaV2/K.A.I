@@ -113,12 +113,12 @@ def listen():
                 audio = r.listen(source)
         try:
                 print(r.recognize_google(audio, show_all=True))
-                return r.recognize_google(audio)
+                return r.recognize_google(audio).lower()
         except sr.UnknownValueError:
             return ""
     else:
         text = input("What do you want to say? \n :")
-        return text
+        return text.lower()
 def adjust():
     with sr.Microphone() as source:
         r.adjust_for_ambient_noise(source)
@@ -171,12 +171,12 @@ while 1:
 
                     say("The following has been written to the file: \n \n" + text)
 
-                elif inp.startswith('download') and inp.endswith('from YouTube'):
+                elif inp.startswith('download') and inp.endswith('from youtube'):
                     words2 = inp.split()
                     title = words2[1:][:-2]
                     youtube.youtube(title)
 
-                elif inp.startswith('find summary about') and inp.endswith('on Wikipedia'):
+                elif inp.startswith('find summary about') and inp.endswith('on wikipedia'):
                     words2 = inp.split()
                     summary = words2[3:][:-2]
                     wikipedia_summary.wikipedia_summary(summary)
@@ -196,7 +196,7 @@ while 1:
                     light.setlightcolor(color)
                     say("Set the light to" + color)
 
-                elif inp.find('Google') != -1:
+                elif inp.find('google') != -1:
                     output = re.search('((?<=search\sfor\s)|(what)|(where)|(who)|(when)|(why)|(which)|(whose)|(how)|(is)|(can))(\w*.)*',inp).group(0)
                     print(f"Doing a google search for {output}")
                     response = google_query.google_search(output)
