@@ -107,6 +107,7 @@ def bag_of_words(s,words):
     return numpy.array(bag)
 
 def listen():
+    if main_settings['debug_mode'] != True:
         with sr.Microphone() as source:
                 r.adjust_for_ambient_noise(source, duration=0.5)
                 audio = r.listen(source)
@@ -115,6 +116,9 @@ def listen():
                 return r.recognize_google(audio)
         except sr.UnknownValueError:
             return ""
+    else:
+        text = input("What do you want to say? \n :")
+        return text
 def adjust():
     with sr.Microphone() as source:
         r.adjust_for_ambient_noise(source)
