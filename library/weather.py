@@ -31,7 +31,7 @@ def weather(city_name):
 
 
         weather_description = z[0]["description"]
-        say("It is " + str(current_temperature) + " Celsius in " + city_name + " with " + str(weather_description))
+        return("It is " + str(current_temperature) + " Celsius in " + city_name + " with " + str(weather_description))
 
     else:
         print(" City Not Found ")
