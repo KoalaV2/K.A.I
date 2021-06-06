@@ -190,11 +190,11 @@ while 1:
                     city_name = words2[-1]
                     weather.weather(city_name)
 
-                elif inp.find('lights') != -1:
+                elif inp.find('lights') != -1 or inp.find('light') != -1:
                     color2  = inp.split()
                     color = str(color2[-1])
                     light.setlightcolor(color)
-                    say("Set the light to" + color)
+                    say("Set the light to " + color)
 
                 elif inp.find('google') != -1:
                     output = re.search('((?<=search\sfor\s)|(what)|(where)|(who)|(when)|(why)|(which)|(whose)|(how)|(is)|(can))(\w*.)*',inp).group(0)
