@@ -41,13 +41,12 @@ def listen():
         text = input("What do you want to say? \n :")
         return text
 
-def adjust():
-    with sr.Microphone() as source:
-        r.adjust_for_ambient_noise(source)
-    return ""
+#def adjust():
+    #with sr.Microphone() as source:
+        #r.adjust_for_ambient_noise(source)
+    #return ""
 
 print("Beginning to listen....")
-adjust()
 
 def main():
     while 1:

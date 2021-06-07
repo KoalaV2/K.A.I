@@ -18,6 +18,7 @@ from library import wikipedia_summary
 from library import weather
 from library import light
 from library import google_query
+from library import spotify
 import library.face as face_rec
 import os
 import subprocess
@@ -156,6 +157,7 @@ def main():
 
     elif inp.find('google') != -1:
         inp.encode("utf-8")
+        print(inp)
         output = re.search('((?<=search\sfor\s)|(what)|(where)|(who)|(when)|(why)|(which)|(whose)|(how)|(is)|(can))(\w*.)*',inp).group(0)
         print(f"Doing a google search for {output}")
         response = google_query.google_search(output)
@@ -163,6 +165,13 @@ def main():
         text = response[0]['text']
         stuff = title + '\n' + text
         return(stuff.encode("utf-8"))
+    elif inp.startswith('play'):
+        song2 = inp.split(' ', 1)[1]
+        print(song2)
+        run_song = spotify.play_track(song2)
+        song_name = run_song['name']
+        artist_name = run_song['artists'][0]['name']
+        return(f"Now playing {song_name} by {artist_name}")
 
 
     else:
