@@ -11,6 +11,7 @@ __pycache__/
 library/images/*
 myfile.wav
 tts-temp.mp3
+settings.json
 # C extensions
 *.so
 
