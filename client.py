@@ -1,14 +1,7 @@
 #!/usr/bin/env python3
 from gtts import gTTS
 from pydub.playback import play
-from library.utils import say
-from library import calculator
 from library import time
-import library.youtube_dl as youtube
-from library import wikipedia_summary
-from library import weather
-from library import light
-from library import google_query
 import library.face as face_rec
 import os
 import subprocess
