@@ -178,6 +178,13 @@ def main():
         return("Paused the music.")
     elif inp.startswith('unpause') or inp.startswith('resume'):
         spotify.resume_music()
+    elif inp.find('volume') != -1:
+        if inp.find('raise') != -1:
+            return("Raising the music volume")
+        elif inp.find('lower') != -1:
+            return("Lowering the music volume")
+        else:
+            return "Doing nothing."
 
 
     else:
