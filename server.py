@@ -165,6 +165,7 @@ def main():
         text = response[0]['text']
         stuff = title + '\n' + text
         return(stuff.encode("utf-8"))
+
     elif inp.startswith('play'):
         song1 = inp.split(' ', 1)[1]
         song2 = song1.replace('by ', '')
@@ -173,11 +174,14 @@ def main():
         song_name = run_song['name']
         artist_name = run_song['artists'][0]['name']
         return(f"Now playing {song_name} by {artist_name}")
+
     elif inp.startswith('pause'):
         spotify.pause_music()
         return("Paused the music.")
+
     elif inp.startswith('unpause') or inp.startswith('resume'):
         spotify.resume_music()
+
     elif inp.find('volume') != -1:
         if inp.find('raise') != -1:
             return("Raising the music volume")
