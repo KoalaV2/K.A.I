@@ -173,6 +173,11 @@ def main():
         song_name = run_song['name']
         artist_name = run_song['artists'][0]['name']
         return(f"Now playing {song_name} by {artist_name}")
+    elif inp.startswith('pause'):
+        spotify.pause_music()
+        return("Paused the music.")
+    elif inp.startswith('unpause') or inp.startswith('resume'):
+        spotify.resume_music()
 
 
     else:

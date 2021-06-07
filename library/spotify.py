@@ -19,3 +19,9 @@ def play_track(song):
     spotify_uri = result['uri']
     sp.start_playback(uris=[spotify_uri])
     return(result)
+def pause_music():
+    sp.pause_playback()
+    return ""
+def resume_music():
+    sp.start_playback()
+    return ""
