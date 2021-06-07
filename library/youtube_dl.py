@@ -14,6 +14,7 @@ def youtube(title):
         say(' '.join(title) + "has successfully been downloaded.")
         say("Do you want to play the file?")
         play_file = listen()
+        # TODO: Fix this cause if you say no it still plays.
         if play_file == "yes" or "Yes":
             cap = cv2.VideoCapture(f"{file_name}.mkv")
             ret, frame = cap.read()

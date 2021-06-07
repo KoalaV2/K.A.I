@@ -111,13 +111,16 @@ def bag_of_words(s,words):
 def main():
     inp = request.args['input']
 
+    # TODO: Make usable with new server / client mode.
     if inp.find("calculator") != -1:
         say("Opening calculator now!")
         calculator.calculator()
 
+    # TODO: Fix and not send notification to phone.
     elif inp.find('SSH') != -1:
         subprocess.call("library/ssh.sh")
 
+    # TODO: Make usable with new server / client mode.
     elif inp in ('text', 'write to a text file', 'Journal','write to text file'):
         say("What do you want to write to the file? \n")
         text_listen = r.listen(source)

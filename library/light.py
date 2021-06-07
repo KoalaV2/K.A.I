@@ -23,6 +23,8 @@ def setlightcolor(color):
         print("Turned off the light..")
         return()
 
+    # TODO: Be able to set warmth / brightness
+
     color_name = {
             "RED":RED,
             "BLUE":BLUE,
