@@ -166,7 +166,8 @@ def main():
         stuff = title + '\n' + text
         return(stuff.encode("utf-8"))
     elif inp.startswith('play'):
-        song2 = inp.split(' ', 1)[1]
+        song1 = inp.split(' ', 1)[1]
+        song2 = song1.replace('by ', '')
         print(song2)
         run_song = spotify.play_track(song2)
         song_name = run_song['name']
