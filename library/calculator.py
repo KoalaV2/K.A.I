@@ -11,16 +11,16 @@ def calculator(user_input):
     if operation == "+" or operation == "add" or operation == "plus":
         result = first_number + second_number
         operand = "+"
-    elif operation == "-" or operation == "subtract":
+    elif operation == "-" or operation == "subtract" or operation == "minus":
         result = first_number - second_number
         operand = "-"
-    elif operation == "*" or operation == "multiply":
+    elif operation == "*" or operation == "multiply" or operation == "times":
         result = first_number * second_number
         operand = "*"
-    elif operation == "/" or operation == "divide":
+    elif operation == "/" or operation == "divide" or operation == "divided by":
         result = first_number / second_number
         operand = "/"
-    elif operation == "pow" or operation == "power":
+    elif operation == "pow" or operation == "power" or operation == "power of":
         result = first_number ** second_number
         operand = "to the power of"
     else:

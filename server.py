@@ -114,7 +114,6 @@ def main():
     # TODO: Make usable with new server / client mode.
     if re.findall('[0-9]\S+',inp):
         inp = inp.split()
-        #say("Opening calculator now!")
         response = calculator.calculator(inp)
         return response
 
