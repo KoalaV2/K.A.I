@@ -119,7 +119,7 @@ def main():
         return response
     """""
     # TODO: Fix and not send notification to phone.
-    elif inp.find('SSH') != -1:
+    if inp.find('SSH') != -1:
         subprocess.call("library/ssh.sh")
 
     # TODO: Make usable with new server / client mode.
