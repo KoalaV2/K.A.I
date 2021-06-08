@@ -112,11 +112,12 @@ def main():
     inp = request.args['input']
 
     # TODO: Make usable with new server / client mode.
+    """"
     if re.findall('[0-9]\S+',inp):
         inp = inp.split()
         response = calculator.calculator(inp)
         return response
-
+    """""
     # TODO: Fix and not send notification to phone.
     elif inp.find('SSH') != -1:
         subprocess.call("library/ssh.sh")
