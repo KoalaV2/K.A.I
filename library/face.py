@@ -17,13 +17,13 @@ global_name = "Unknown"
 
 def face_rec():
     if main_settings['face_rec_toggle'] == False:
-        return""
+        return ""
     if 'faces' not in config:
         print("no faces found in config.. exiting")
         exit(1)
 
     global global_name
-    video_capture = cv2.VideoCapture(0)
+    video_capture = cv2.VideoCapture(main_settings['video_device'])
     ret, frame = video_capture.read()
 
     if not ret:
@@ -61,6 +61,3 @@ def face_rec():
         if matches[best_match_index]:
             global_name = known_names[best_match_index]
             print(global_name)
-
-    #Removing the image file as it's not needed anymore until when it is started again
-    #os.remove("filename.jpg"
