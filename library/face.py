@@ -5,16 +5,23 @@ import numpy as np
 import configparser as cp
 import cv2
 from library.utils import say
+import json
 
 config = cp.ConfigParser()
 config.read('library/faces.cfg')
-if 'faces' not in config:
-    print("no faces found in config.. exiting")
-    exit(1)
+
+with open("settings.json") as settings_file:
+    main_settings = json.load(settings_file)
 
 global_name = "Unknown"
 
 def face_rec():
+    if main_settings['face_rec_toggle'] == False:
+        return""
+    if 'faces' not in config:
+        print("no faces found in config.. exiting")
+        exit(1)
+
     global global_name
     video_capture = cv2.VideoCapture(0)
     ret, frame = video_capture.read()
