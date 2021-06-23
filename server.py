@@ -19,6 +19,7 @@ from library import weather
 from library import light
 from library import google_query
 from library import spotify
+from library import netmon
 import library.face as face_rec
 import os
 import subprocess
@@ -170,6 +171,9 @@ def main():
         text = response[0]['text']
         stuff = title + '\n' + text
         return(stuff.encode("utf-8"))
+    elif inp.find('scan') != -1 and inp.find('network') != -1:
+        netmon.scannet()
+        return("Network scan has finished and has been uploaded to the database.")
 
     elif inp.startswith('play'):
         song1 = inp.split(' ', 1)[1]
