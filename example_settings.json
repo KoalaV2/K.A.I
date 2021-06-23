@@ -1,0 +1,9 @@
+{
+    "face_rec_toggle": false,
+    "trigger": "hey assistant",
+    "debug_mode": true,
+    "client_id": "123123",
+    "client_secret": "123123",
+    "redirect_uri": "http://localhost:8080",
+    "video_device": 4
+}
