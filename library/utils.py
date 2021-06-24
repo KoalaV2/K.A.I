@@ -11,15 +11,17 @@ with open("settings.json") as settings_file:
     main_settings = json.load(settings_file)
 
 def say(string):
-    tts = gTTS(string)
-    tts.save('tts-temp.mp3')
-    sound = AudioSegment.from_mp3("tts-temp.mp3")
-    sound.export("myfile.wav", format="wav")
-    sound = AudioSegment.from_file('myfile.wav')
-    sound = sound.set_frame_rate(16000)
-    print(string)
-    play(sound)
-
+    if main_settings['stfu'] != True:
+        tts = gTTS(string)
+        tts.save('tts-temp.mp3')
+        sound = AudioSegment.from_mp3("tts-temp.mp3")
+        sound.export("myfile.wav", format="wav")
+        sound = AudioSegment.from_file('myfile.wav')
+        sound = sound.set_frame_rate(16000)
+        print(string)
+        play(sound)
+    else:
+        print(string)
 def listen():
     if main_settings['debug_mode'] != True:
         with sr.Microphone() as source:
@@ -33,3 +35,9 @@ def listen():
     else:
         text = input("What do you want to say? \n :")
         return text
+
+def main():
+    say("Testing")
+
+if __name__ == "__main__":
+    main()

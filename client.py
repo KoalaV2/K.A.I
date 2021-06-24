@@ -17,15 +17,18 @@ with open("settings.json") as settings_file:
     main_settings = json.load(settings_file)
 
 trigger = main_settings['trigger']
+
 def say(string):
-    tts = gTTS(string)
-    tts.save('tts-temp.mp3')
-    sound = AudioSegment.from_mp3("tts-temp.mp3")
-    sound.export("myfile.wav", format="wav")
-    sound = AudioSegment.from_file('myfile.wav')
-    sound = sound.set_frame_rate(16000)
-    print(string)
-    play(sound)
+    if main_settings['stfu'] != True:
+        tts = gTTS(string)
+        tts.save('tts-temp.mp3')
+        sound = AudioSegment.from_mp3("tts-temp.mp3")
+        sound.export("myfile.wav", format="wav")
+        sound = AudioSegment.from_file('myfile.wav')
+        sound = sound.set_frame_rate(16000)
+        play(sound)
+    else:
+        print(string)
 
 def listen():
     if main_settings['debug_mode'] != True:
