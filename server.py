@@ -8,9 +8,6 @@ import json
 import pickle
 import tensorflow
 import tflearn
-from gtts import gTTS
-from pydub.playback import play
-from library.utils import say
 from library import calculator
 from library import time
 import library.youtube_dl as youtube
@@ -20,10 +17,7 @@ from library import light
 from library import google_query
 from library import spotify
 from library import netmon
-import library.face as face_rec
 import os
-import subprocess
-import speech_recognition as sr
 from pydub import AudioSegment
 from pydub.playback import play
 import re
@@ -31,7 +25,6 @@ from flask import Flask, request
 from library import light
 
 app = Flask(__name__)
-r = sr.Recognizer()
 
 with open("library/ml-data/intents.json") as file:
     data = json.load(file)
