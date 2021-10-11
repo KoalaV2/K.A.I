@@ -104,14 +104,14 @@ def bag_of_words(s,words):
 @app.route('/')
 def main():
     inp = request.args['input']
+    nodename = request.args['nodename']
+    print(f"Request is from node: {nodename}")
 
-    # TODO: Make usable with new server / client mode.
-    """"
-    if re.findall('[0-9]\S+',inp):
-        inp = inp.split()
-        response = calculator.calculator(inp)
-        return response
-    """""
+    # if re.findall('[0-9]\S+',inp):
+    #     inp = inp.split()
+    #     response = calculator.calculator(inp)
+    #     return response
+
     # TODO: Fix and not send notification to phone.
     if inp.find('SSH') != -1:
         subprocess.call("library/ssh.sh")

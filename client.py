@@ -17,6 +17,8 @@ with open("settings.json") as settings_file:
     main_settings = json.load(settings_file)
 
 trigger = main_settings['trigger']
+nodename = main_settings['nodename']
+print(nodename)
 
 def say(string):
     if main_settings['stfu'] != True:
@@ -75,7 +77,8 @@ def main():
                         say("Returning to standby... Have a great day!")
                         break
 
-                    url = f"http://localhost:5000/?input={inp}"
+                    url = f"http://localhost:5000/?input={inp}&nodename={nodename}"
+                    print(f"Request is from node: {nodename}")
                     response = requests.request("GET", url)
                     say(response.text)
 
