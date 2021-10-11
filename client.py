@@ -18,7 +18,6 @@ with open("settings.json") as settings_file:
 
 trigger = main_settings['trigger']
 nodename = main_settings['nodename']
-print(nodename)
 
 def say(string):
     if main_settings['stfu'] != True:
@@ -51,7 +50,7 @@ def listen():
         #r.adjust_for_ambient_noise(source)
     #return ""
 
-print("Beginning to listen....")
+print("Beginning to listen.... \n")
 
 def main():
     while 1:
@@ -64,13 +63,13 @@ def main():
                     face_rec.face_rec()
                     username = face_rec.global_name
                 else:
-                    print("Face recognition disabled, skipping...")
+                    print("Face recognition disabled, skipping... \n")
                     username = "User"
                 greeting = time.greeting
-                say(greeting(time.now.hour) + f" {username}, what can I do for you?")
+                say(greeting(time.now.hour) + f" {username}, what can I do for you? \n")
 
                 while True:
-                    print("Speak now..")
+                    print("Speak now.. \n")
                     inp = listen().lower()
 
                     if inp in ('quit', 'no', 'no quit the program', 'no thank you', 'goodbye', 'bye'):
