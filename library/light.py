@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 # coding=utf-8
-import sys
-from time import sleep
 
-from lifxlan import BLUE, CYAN, GREEN, LifxLAN, ORANGE, PINK, PURPLE, RED, YELLOW
+from lifxlan import BLUE, CYAN, GREEN, LifxLAN, ORANGE, PINK, PURPLE, RED, YELLOW,WHITE
 
 
 def setlightcolor(color):
@@ -26,6 +24,7 @@ def setlightcolor(color):
     # TODO: Be able to set warmth / brightness
 
     color_name = {
+            "WHITE":WHITE,
             "RED":RED,
             "BLUE":BLUE,
             "CYAN":CYAN,

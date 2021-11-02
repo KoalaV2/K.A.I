@@ -1,4 +1,4 @@
- K.A.I aka Koalas artificial intelligence
+ K.A.I aka Koalas Artificial Intelligence
 
 This is a project of mine to further improve my daily life automation and programming skills.
 
